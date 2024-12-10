@@ -1,6 +1,7 @@
 package encryption;
 
 public class Polybius {
+    // The Polybius square grid used for encryption and decryption
     private static char[][] polybeGrid = {
             {'a', 'n', 'z', 'b', 'e'},
             {'v', 'r', 'c', 't', 'x'},
@@ -9,6 +10,11 @@ public class Polybius {
             {'g', 'l', 'h', 'k', 'j'}
     }; // W = VV
 
+    /**
+     * Encrypts a given plaintext string using the Polybius cipher.
+     * @param text The input plaintext to be encrypted.
+     * @return A string containing the encrypted representation of the input text.
+     */
     public static String encrypt(String text) {
         // Remove special characters and whitespace from the text
         text = text.replaceAll("[^a-zA-Z]", "");
@@ -32,7 +38,6 @@ public class Polybius {
                         }
                     }
                 }
-                continue; // Skip to the next character
             }else{
                 // Find the character in the grid and get its position
                 boolean found = false;
@@ -52,6 +57,11 @@ public class Polybius {
         return polybeString.toString(); // Return the final encoded string
     }
 
+    /**
+     * Decrypts a given encrypted string using the Polybius cipher.
+     * @param encryptedText The input encrypted text to be decrypted.
+     * @return A string containing the original plaintext.
+     */
     public static String decrypt(String encryptedText){
         StringBuilder decryptedText = new StringBuilder();
 
@@ -68,9 +78,10 @@ public class Polybius {
 
             // Retrieve the character from the grid
             char decodedChar = polybeGrid[row][col];
-            decryptedText.append(decodedChar);
+            decryptedText.append(decodedChar); // Append the character to the result
         }
 
+        // Return the decrypted text
         return decryptedText.toString();
     }
 
