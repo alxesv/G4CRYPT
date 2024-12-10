@@ -15,7 +15,6 @@ public class Md5 {
     private static byte[] digest(byte[] input) {
         MessageDigest md;
         try {
-            // selected algorithm to change
             md = MessageDigest.getInstance("MD5");
         } catch (NoSuchAlgorithmException e) {
             throw new IllegalArgumentException(e);
@@ -59,7 +58,7 @@ public class Md5 {
     }
 
     /*
-     * just main being main...
+     * just main being main... (adapt if needed)
      */
 
     public static void main(String[] args) {
