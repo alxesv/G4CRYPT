@@ -7,15 +7,14 @@ import java.io.IOException;
 public class SaveData {
 
     /**
-     * Save the data to a file
+     * Save the data to a file with no key
      */
-
-    // Store the data with no key
     public static void saveData(String name, String password, String method) {
-        saveData(name, password, method, "no key");
+        saveData(name, password, method, "null");
     }
-
-    // Store the data with a key
+    /**
+     * Save the data to a file with a key
+     */
     public static void saveData(String name, String password, String method, String key) {
         File file = new File("data.csv");
         boolean fileExists = file.exists();
@@ -27,7 +26,7 @@ public class SaveData {
                 writer.write("Password Store\n");
             }
             // Write the data
-            writer.write(name + " : " + password + ", " + method + ", " + key + ";" + "\n");
+            writer.write(name + ":" + password + ":" + method + ":" + key + "\n");
             System.out.println("Data saved successfully");
         } catch (IOException e) {
             e.printStackTrace();
