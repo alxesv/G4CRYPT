@@ -52,7 +52,7 @@ public class VigenereMenu {
 
     /**
      * Get the password from the user and format it
-     * @return
+     * @return the password
      */
     private static String getPassword(){
         Scanner scanner = new Scanner(System.in);
