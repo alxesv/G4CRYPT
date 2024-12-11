@@ -43,12 +43,14 @@ public class Md5 {
      * main caller, currently just outputs stuff in the console
      */
 
-    public static void formatter(String message) {
+    public static String formatter(String message) {
 
         //message props
 
-        System.out.println(String.format(OUTPUT_FORMAT, "Input (string)", message));
-        System.out.println(String.format(OUTPUT_FORMAT, "Input (length)", message.length()));
+        message = message + 
+
+        return message;
+        return 
 
         // hash props
 
