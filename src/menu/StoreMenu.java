@@ -5,7 +5,11 @@ import encryption.Vigenere;
 import java.util.Scanner;
 
 public class StoreMenu {
+    /**
+     * Store password menu
+     */
     public static void store() throws Exception {
+
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
 
@@ -79,6 +83,9 @@ public class StoreMenu {
         }
     }
 
+    /**
+     * Display single encryption methods options
+     */
     private static void displaySingleEncryptionsOptions() {
         System.out.println("\n--- Store Password ---");
         System.out.println("Please select one of the following encryption methods:");
@@ -90,6 +97,9 @@ public class StoreMenu {
         System.out.println("0. Return to main menu");
     }
 
+    /**
+     * Print the store options available to the user
+     */
     private static void printStoreOptions(){
         System.out.println("\n--- Store Password ---");
         System.out.println("Please select one of the following options:");

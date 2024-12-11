@@ -1,6 +1,7 @@
 package utils;
 
 import java.math.BigInteger;
+import java.util.Optional;
 
 public class Lfsr {
     /**
@@ -8,8 +9,16 @@ public class Lfsr {
      * @param seed the seed to start the LFSR
      * @param iterations the number of iterations to run
      */
-    public static void run(String seed, int iterations) {
+public static BigInteger run(String seed, int iterations, Optional<Integer> bitLength) {
+        // Default length of the LFSR
+        int defaultLength = 16;
+        // Initialize length of the LFSR
+        int length;
+        // If length is not provided, use the default length
+        length = bitLength.orElse(defaultLength);
 
+        // Initialize the random number
+        BigInteger randomNumber = BigInteger.ZERO;
         // Turn seed into binary string
         StringBuilder rawSeedBinary = new StringBuilder();
         for (int i = 0; i < seed.length(); i++) {
@@ -18,18 +27,16 @@ public class Lfsr {
             rawSeedBinary.append(binary);
         }
 
-        // Repeat the seed if it is less than 16 bits
-        if(rawSeedBinary.length() < 16){
-            System.out.println(rawSeedBinary);
-            int diff = 16 - rawSeedBinary.length();
+        // Repeat the seed if it is less than length
+        if(rawSeedBinary.length() < length){
+            int diff = length - rawSeedBinary.length();
             for(int i = 0; i < diff; i++){
-                rawSeedBinary.insert(rawSeedBinary.length(), rawSeedBinary.charAt(i));
+                rawSeedBinary.insert(0, rawSeedBinary.charAt(i % rawSeedBinary.length()));
             }
-            System.out.println(rawSeedBinary);
         }
 
-        // Truncate to 16 bits to limit the size
-        StringBuilder seedBinary = new StringBuilder(rawSeedBinary.substring(0, 16));
+        // Truncate to length if it is greater than length
+        StringBuilder seedBinary = new StringBuilder(rawSeedBinary.substring(0, length));
 
 
         // Run the LFSR @iterations times
@@ -64,9 +71,11 @@ public class Lfsr {
             // Delete the 6th bit
             seedBinary.deleteCharAt(5);
 
-            // Convert to int and print
+            // Convert to BigInteger and print
             BigInteger result = new BigInteger(seedBinary.toString(), 2);
+            randomNumber = result;
             System.out.println(result);
         }
+        return randomNumber;
     }
 }
