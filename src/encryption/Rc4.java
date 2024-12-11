@@ -1,22 +1,17 @@
 package encryption;
 
 import java.math.BigInteger;
-import java.util.Arrays;
 import java.util.Optional;
 
 import utils.Lfsr;
 
 public class Rc4 {
 
-    public static void main(String[] args) {
-        System.out.println(Rc4Encrypt("oui bonsoir !", "une bonne seed en fait"));
-        
-    }
-
     /**
      * Main for RC4 encryption,
      * @param message the message to encrypt
      * @param seed the seed needed to encrypt or decrypt message seed size adapts to the needed size
+     * @return hex format crypted message
      */
 
     public static String Rc4Encrypt(String message, String seed) {
@@ -53,14 +48,15 @@ public class Rc4 {
         // Encrypt & Decrypt
         String text = message;
         byte[] cryptedText = rc4EncryptDecrypt(text.getBytes(), mainTable.clone());
-        return Arrays.toString(cryptedText);
+        return utils.Common.bytesToHex(cryptedText);
     }
 
 
     /**
      * Main for RC4 decryption,
-     * @param message the message to encrypt
+     * @param message the crypted message in hex
      * @param seed the seed needed to encrypt or decrypt message seed size adapts to the needed size
+     * @return clear message, decrypted
      */
 
      public static String Rc4Decrypt(String message, String seed) {
@@ -94,12 +90,10 @@ public class Rc4 {
             swap(mainTable, i, j);
         }
 
-        String text = message;
-        byte[] cryptedText = rc4EncryptDecrypt(text.getBytes(), mainTable.clone());
-        
-    byte[] decryptedText = rc4EncryptDecrypt(cryptedText, mainTable.clone());
-    System.out.println("Decrypted: " + new String(decryptedText));
-        
+        byte[] messageToBytes = utils.Common.hexToBytes(message);
+
+        byte[] decryptedText = rc4EncryptDecrypt(messageToBytes, mainTable.clone());
+        return new String(decryptedText);
     }
 
     // Encrypts from input using the maintable and the rc4 algorithm
