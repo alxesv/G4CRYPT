@@ -8,8 +8,8 @@ public class Lfsr {
      * @param seed the seed to start the LFSR
      * @param iterations the number of iterations to run
      */
-    public static void run(String seed, int iterations) {
-
+    public static BigInteger run(String seed, int iterations) {
+        BigInteger randomNumber = BigInteger.ZERO;
         // Turn seed into binary string
         StringBuilder rawSeedBinary = new StringBuilder();
         for (int i = 0; i < seed.length(); i++) {
@@ -66,7 +66,9 @@ public class Lfsr {
 
             // Convert to int and print
             BigInteger result = new BigInteger(seedBinary.toString(), 2);
+            randomNumber = result;
             System.out.println(result);
         }
+        return randomNumber;
     }
 }
