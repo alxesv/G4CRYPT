@@ -9,8 +9,8 @@ public class Main {
         System.out.println("Welcome to G4CRYPT");
         System.out.println("A simple password manager");
 
-        System.out.println(encryptRot("hello", -4));
-        storeData();
+        System.out.println(encryptRot(" hello", -4));
+        //storeData();
 
         // Start the main menu
         MainMenu.mainMenu();
