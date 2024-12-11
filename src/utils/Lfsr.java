@@ -71,10 +71,10 @@ public static BigInteger run(String seed, int iterations, Optional<Integer> bitL
             // Delete the 6th bit
             seedBinary.deleteCharAt(5);
 
-            // Convert to BigInteger and print
-            BigInteger result = new BigInteger(seedBinary.toString(), 2);
-            randomNumber = result;
-            System.out.println(result);
+            // Convert to BigInteger on the last iteration
+            if(i == iterations - 1){
+                randomNumber = new BigInteger(seedBinary.toString(), 2);
+            }
         }
         return randomNumber;
     }
