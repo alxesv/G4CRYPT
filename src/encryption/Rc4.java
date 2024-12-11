@@ -18,12 +18,12 @@ public class Rc4 {
         }
 
         // Encrypt & Decrypt
-        String plaintext = "Hello, World!"; // Replace with input from menu
-        byte[] ciphertext = rc4EncryptDecrypt(plaintext.getBytes(), mainTable.clone());
+        String text = "Hello, World!"; // Replace with input from menu
+        byte[] cryptedText = rc4EncryptDecrypt(text.getBytes(), mainTable.clone());
 
-        System.out.println("Ciphertext: " + Arrays.toString(ciphertext));
+        System.out.println("Ciphertext: " + Arrays.toString(cryptedText));
 
-        byte[] decryptedText = rc4EncryptDecrypt(ciphertext, mainTable.clone());
+        byte[] decryptedText = rc4EncryptDecrypt(cryptedText, mainTable.clone());
         System.out.println("Decrypted: " + new String(decryptedText));
     }
 
