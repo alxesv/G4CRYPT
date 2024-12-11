@@ -13,29 +13,29 @@ public class HashIntegrityChecker {
     }
 
     /*
-     * Checks the method, hashes messageString in the selected method (only md5 and SHA256 are supported rn) 
+     * Checks the method, hashes messageString in the selected method (only md5 and SHA256 are supported right now) 
      * and compares it with the given existingMessageString
      */
 
-    public static String Checker(String method, String messageString, String existingMessageString) {
+    public static boolean Checker(String method, String messageString, String existingMessageString) {
         if(method.equals("Md5")) {
             String messageStringHashed = Md5.hashString(messageString);
             if(existingMessageString.equals(messageStringHashed)) {
-                return "ok";
+                return true;
             } else {
-                return "ko";
+                return false;
             }
         } else if(method.equals("Sha256")) {
             String messageStringHashed = Sha256.hashString(messageString);
             if(messageStringHashed.equals(existingMessageString)) {
-                return "ok";
+                return true;
             } else {
-                return "ko";
+                return false;
             }
 
         } else {
             System.out.println("Method Error");
-            return "Method Error";
+            return false;
         }
         
     }
