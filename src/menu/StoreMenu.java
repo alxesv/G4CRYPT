@@ -1,5 +1,7 @@
 package menu;
 
+import encryption.Vigenere;
+
 import java.util.Scanner;
 
 public class StoreMenu {
@@ -45,8 +47,7 @@ public class StoreMenu {
                             // Remove break and add the rotation encryption menu
                             break;
                         case 2:
-                            System.out.println("Vigenère");
-                            // Remove break and add the vigenère encryption menu
+                            VigenereMenu.vigenere();
                             break;
                         case 3:
                             System.out.println("RC4");
