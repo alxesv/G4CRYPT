@@ -1,7 +1,7 @@
 package encryption;
 
 public class Polybius {
-    // The Polybius square grid used for encryption and decryption
+    // The Polybius square grid used for encryption and decryption, format: [row][column]
     private static char[][] polybeGrid = {
             {'a', 'n', 'z', 'b', 'e'},
             {'v', 'r', 'c', 't', 'x'},
@@ -83,6 +83,10 @@ public class Polybius {
 
         // Return the decrypted text
         return decryptedText.toString();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(Polybius.encrypt("Hello world"));
     }
 
 }
