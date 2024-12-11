@@ -45,20 +45,13 @@ public class Md5 {
 
     public static String formatter(String message) {
 
-        //message props
-
-        message = message + 
-
-        return message;
-        return 
-
-        // hash props
-
         byte[] md5InBytes = Md5.digest(message.getBytes(UTF_8));
-        System.out.println(String.format(OUTPUT_FORMAT, "MD5 (hex) ", bytesToHex(md5InBytes)));
-        // fixed length, 16 bytes, 128 bits.
-        System.out.println(String.format(OUTPUT_FORMAT, "MD5 (length)", md5InBytes.length));
 
+        
+
+
+
+        return bytesToHex(md5InBytes);
     }
 
     /*
