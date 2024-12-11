@@ -10,7 +10,7 @@ public class MainMenu {
      * Main menu of the application
      * Allows user to navigate to different options
      */
-    public static void mainMenu() {
+    public static void mainMenu() throws Exception {
         Scanner scanner = new Scanner(System.in);
         int[] validChoices = {1, 2, 3, 4, 5, 0};
         boolean running = true;
@@ -42,8 +42,7 @@ public class MainMenu {
                     StoreMenu.store();
                     break;
                 case 2:
-                    System.out.println("Retrieve");
-                    // Remove break and add the retrieving password menu
+                    RetrieveMenu.retrieve();
                     break;
                 case 3:
                     System.out.println("Generate");

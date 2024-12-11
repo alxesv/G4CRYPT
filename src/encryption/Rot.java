@@ -16,7 +16,6 @@ public class Rot {
     private static List<String> passwordData = new ArrayList<>();
 
     public static String encryptRot(String text, int rot) {
-
             StringBuilder result = new StringBuilder();
             // loop on every letter of the word to encrypt
             for (int i = 0; i < text.length(); i++) {
@@ -41,11 +40,6 @@ public class Rot {
             passwordData.add("ROT");
             return passwordData.get(0);
     }
-
-    //public static void storeData() {
-    //    System.out.println(passwordData);
-    //    saveData("amazon", passwordData.get(0), passwordData.get(2));
-    //}
 
     /** Decrypt a text with a rotation
      * @param text the text to decrypt
