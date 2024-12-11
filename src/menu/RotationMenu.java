@@ -2,8 +2,11 @@ package menu;
 
 import encryption.Rot;
 import encryption.Vigenere;
+import utils.AesKeyManager;
 import utils.Common;
+import utils.SaveData;
 
+import javax.crypto.SecretKey;
 import java.util.Scanner;
 
 public class RotationMenu {
@@ -11,7 +14,7 @@ public class RotationMenu {
     /**
      * Display the Rotation menu
      */
-    public static void rotation() {
+    public static void rotation() throws Exception {
         System.out.println("--- Rotation Menu --- \n");
         // Ask the name of the service
         String service = Common.getServiceName();
@@ -27,10 +30,11 @@ public class RotationMenu {
         String encryptedPassword = Rot.encryptRot(password, rot);
         System.out.println("Encrypted password: " + encryptedPassword);
 
-        // Decrypt the password
-        // TODO Remove this and add it to the decryption menu
-        String decryptedPassword = Rot.decryptRot(encryptedPassword, rot);
-        System.out.println("Decrypted password: " + decryptedPassword);
+        //Retrieve AES Key
+        SecretKey aesKey = AesKeyManager.loadOrGenerateKey();
+
+        // Save the encrypted data
+        SaveData.saveData(service, encryptedPassword, "ROT", String.valueOf(rot), aesKey);
     }
 
     /**

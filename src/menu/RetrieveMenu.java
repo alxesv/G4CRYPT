@@ -1,15 +1,13 @@
 package menu;
 
-import encryption.Aes;
-import encryption.Enigma;
-import encryption.Polybius;
-import encryption.Vigenere;
+import encryption.*;
 import utils.Common;
 import utils.RetrieveCSV;
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.List;
 import java.util.Scanner;
 
@@ -95,11 +93,13 @@ public class RetrieveMenu {
 
         switch (method.toUpperCase()) {
             case "ROT":
-                // Decrypt using ROT cipher
-                int shift = args != null ? Integer.parseInt(args) : 0;
-                // TODO: Implement the decryptROT function
-                System.out.println("decrypt ROT...");
-                return "TODO";
+                if(args!=null){
+                    int X = Integer.parseInt(args);
+                    password = Rot.decryptRot(encryptedPassword, X);
+                    return password;
+                }
+
+                return "Error: No rotation index provided.";
 
             case "ENIGMA":
                 // Decrypt using Enigma machine simulation
@@ -125,10 +125,8 @@ public class RetrieveMenu {
                 // Decrypt using AES encryption
                 if (args != null) {
                     try {
-                        // Convert the hexadecimal key to bytes
-                        byte[] decodedKey = Common.hexToBytes(args);
-
-                        // Rebuild the secret key
+                        // Decode the secret Key
+                        byte[] decodedKey = Base64.getDecoder().decode(args);
                         SecretKey key = new SecretKeySpec(decodedKey, 0, decodedKey.length, "AES");
 
                         password = Aes.decrypt(encryptedPassword, key);
@@ -162,22 +160,29 @@ public class RetrieveMenu {
 
 
             case "RC4":
-                // TODO: Implement RC4 decryption
-                return "";
+                if(args != null){
+                    password = Rc4.Rc4Decrypt(encryptedPassword, args);
+                    return password;
+                }
+                return "Error: No seed provided.";
 
             default:
                 return "Unsupported decryption method: " + method;
         }
     }
 
-    private static char[][] stringToGrid(String args) {
-        char[][] grid = new char[5][5];
-        String[] rows = args.split(";"); // Diviser les lignes par le point-virgule
+    public static char[][] stringToGrid(String text) {
+        // Vérifie que le texte a exactement 25 caractères
+        if (text.length() != 25) {
+            throw new IllegalArgumentException("Text must have exactly 25 characters.");
+        }
 
-        for (int i = 0; i < rows.length; i++) {
-            String[] cols = rows[i].split(","); // Diviser les colonnes par la virgule
-            for (int j = 0; j < cols.length; j++) {
-                grid[i][j] = cols[j].charAt(0); // Convertir la chaîne en caractère
+        char[][] grid = new char[5][5];
+
+        // Remplir le tableau 5x5 avec les caractères du texte
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                grid[i][j] = text.charAt(i * 5 + j);
             }
         }
 

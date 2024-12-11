@@ -1,15 +1,18 @@
 package menu;
 
 import encryption.Vigenere;
+import utils.AesKeyManager;
 import utils.Common;
+import utils.SaveData;
 
+import javax.crypto.SecretKey;
 import java.util.Scanner;
 
 public class VigenereMenu {
     /**
      * Display the Vigenere menu
      */
-    public static void vigenere() {
+    public static void vigenere() throws Exception {
         System.out.println("--- Vigenere Menu --- \n");
         // Ask the name of the service
         String service = Common.getServiceName();
@@ -25,10 +28,11 @@ public class VigenereMenu {
         String encryptedPassword = Vigenere.encrypt(password, key);
         System.out.println("Encrypted password: " + encryptedPassword);
 
-        // Decrypt the password
-        // TODO Remove this and add it to the decryption menu
-        String decryptedPassword = Vigenere.decrypt(encryptedPassword, key);
-        System.out.println("Decrypted password: " + decryptedPassword);
+        //Retrieve AES Key
+        SecretKey aesKey = AesKeyManager.loadOrGenerateKey();
+
+        // Save the encrypted password and rotor positions
+        SaveData.saveData(service, encryptedPassword, "VIGENERE", key, aesKey);
     }
 
     /**

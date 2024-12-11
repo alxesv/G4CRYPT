@@ -2,6 +2,9 @@ import static encryption.Rot.*;
 import java.util.Scanner;
 import java.util.stream.IntStream;
 import menu.MainMenu;
+import utils.AesKeyManager;
+
+import javax.crypto.SecretKey;
 
 public class Main {
     public static void main(String[] args) throws Exception {

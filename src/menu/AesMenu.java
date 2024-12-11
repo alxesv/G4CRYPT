@@ -1,9 +1,12 @@
 package menu;
 
 import encryption.Aes;
+import utils.AesKeyManager;
 import utils.Common;
+import utils.SaveData;
 
 import javax.crypto.SecretKey;
+import java.util.Base64;
 import java.util.Scanner;
 
 public class AesMenu {
@@ -27,11 +30,13 @@ public class AesMenu {
         String encryptedPassword = Aes.encrypt(password, secretKey);
         System.out.println("Encrypted password: " + encryptedPassword);
 
-        // Decrypt the password
-        // TODO Remove this and add it to the decryption menu
-        String decryptedPassword = Aes.decrypt(encryptedPassword, secretKey);
-        System.out.println("Decrypted password: " + decryptedPassword);
+        //Retrieve AES Key
+        SecretKey aesKey = AesKeyManager.loadOrGenerateKey();
 
+        String encodedSecretKey = Base64.getEncoder().encodeToString(secretKey.getEncoded());
+
+        // Save the encrypted password and rotor positions
+        SaveData.saveData(service, encryptedPassword, "AES", encodedSecretKey, aesKey);
     }
 
     /**

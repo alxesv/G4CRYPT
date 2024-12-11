@@ -1,9 +1,12 @@
 package menu;
 
+import encryption.Aes;
 import encryption.Polybius;
+import utils.AesKeyManager;
 import utils.Common;
 import utils.SaveData;
 
+import javax.crypto.SecretKey;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -35,9 +38,12 @@ public class PolybiusMenu {
         String encryptedPassword = Polybius.encrypt(password, grid);
         System.out.println("Encrypted Password: " + encryptedPassword);
 
+        //Retrieve AES Key
+        SecretKey aesKey = AesKeyManager.loadOrGenerateKey();
+
         // Save the encrypted data
         String gridAsString = gridToString(grid);
-        SaveData.saveData(service, encryptedPassword, "POLYBIUS", gridAsString);
+        SaveData.saveData(service, encryptedPassword, "POLYBIUS", gridAsString, aesKey);
     }
 
     /**

@@ -59,7 +59,6 @@ public class StoreMenu {
                             break;
                         case 5:
                             EnigmaMenu.enigma();
-                            running = false;
                             break;
                         case 6:
                             AesMenu.aes();
