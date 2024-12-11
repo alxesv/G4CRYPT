@@ -151,9 +151,15 @@ public class RetrieveMenu {
                 return "We encountered a problem decrypting your password, please wait.";
 
             case "POLYBIUS":
-                // Decrypt using Polybius square cipher
-                password = Polybius.decrypt(encryptedPassword);
-                return password;
+                if(args != null){
+                    char[][] grid = stringToGrid(args);
+
+                    // Decrypt using Polybius square cipher
+                    password = Polybius.decrypt(encryptedPassword, grid);
+                    return password;
+                }
+                return "Error: No grid provided for Polybius";
+
 
             case "RC4":
                 // TODO: Implement RC4 decryption
@@ -163,4 +169,19 @@ public class RetrieveMenu {
                 return "Unsupported decryption method: " + method;
         }
     }
+
+    private static char[][] stringToGrid(String args) {
+        char[][] grid = new char[5][5];
+        String[] rows = args.split(";"); // Diviser les lignes par le point-virgule
+
+        for (int i = 0; i < rows.length; i++) {
+            String[] cols = rows[i].split(","); // Diviser les colonnes par la virgule
+            for (int j = 0; j < cols.length; j++) {
+                grid[i][j] = cols[j].charAt(0); // Convertir la chaîne en caractère
+            }
+        }
+
+        return grid;
+    }
+
 }
