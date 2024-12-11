@@ -1,5 +1,7 @@
 package menu;
 
+import utils.Lfsr;
+
 import java.util.Scanner;
 import java.util.stream.IntStream;
 
@@ -10,7 +12,7 @@ public class MainMenu {
      */
     public static void mainMenu() {
         Scanner scanner = new Scanner(System.in);
-        int[] validChoices = {1, 2, 3, 4, 0};
+        int[] validChoices = {1, 2, 3, 4, 5, 0};
         boolean running = true;
 
         while (running) {
@@ -48,6 +50,9 @@ public class MainMenu {
                     // Remove break and add the generating password menu
                     break;
                 case 4:
+                    RandomNumberMenu.randomNumber();
+                    break;
+                case 5:
                     // Display help menu
                     HelpMenu.help();
                     break;
@@ -71,7 +76,8 @@ public class MainMenu {
         System.out.println("1. Store password");
         System.out.println("2. Retrieve password");
         System.out.println("3. Generate secure password");
-        System.out.println("4. Help - How to use the application");
+        System.out.println("4. Generate random numbers");
+        System.out.println("5. Help - How to use the application");
         System.out.println("0. Exit");
     }
 

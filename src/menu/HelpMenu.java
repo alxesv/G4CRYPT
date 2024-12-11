@@ -40,6 +40,10 @@ public class HelpMenu {
                     displayGeneratePasswordHelp();
                     hold();
                     break;
+                case 4:
+                    displayGenerateRandomNumbersHelp();
+                    hold();
+                    break;
                 case 0:
                     System.out.println("Returning to main menu...");
                     // Exit the help menu
@@ -89,6 +93,17 @@ public class HelpMenu {
     }
 
     /**
+     * Display help information for generating random numbers
+     */
+    private static void displayGenerateRandomNumbersHelp() {
+        System.out.println("\n--- Generate Random Numbers ---");
+        System.out.println("This option allows you to generate random numbers using an LFSR algorithm.");
+        System.out.println("You will need to provide a seed and the number of iterations to generate the random numbers.");
+        System.out.println("The seed can be any alphanumeric character and the number of iterations must be between 1 and 128.");
+        System.out.println();
+    }
+
+    /**
      * Print the help menu options
      */
     private static void printHelpOptions() {
@@ -96,6 +111,7 @@ public class HelpMenu {
         System.out.println("1. Store Password");
         System.out.println("2. Retrieve Password");
         System.out.println("3. Generate Secure Password");
+        System.out.println("4. Generate Random Numbers");
         System.out.println("0. Return to Main Menu");
     }
 
