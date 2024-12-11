@@ -8,12 +8,16 @@ public class SaveData {
 
     /**
      * Save the data to a file with no key
+     * @param name name of the service related to the password
+     * @param password encrypt password to save
+     * @param method encryption method used
      */
     public static void saveData(String name, String password, String method) {
         saveData(name, password, method, "null");
     }
     /**
      * Save the data to a file with a key
+     * @param key key used for encryption
      */
     public static void saveData(String name, String password, String method, String key) {
         File file = new File("data.csv");
