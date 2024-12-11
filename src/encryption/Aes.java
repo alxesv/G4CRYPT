@@ -8,11 +8,12 @@ import static utils.Common.hexToBytes;
 
 public class Aes {
     /**
-     * Generate a secret key
+     * Generate a secret key using standard Java libraries
      */
     public static SecretKey generateKey() throws Exception {
         KeyGenerator keyGen = KeyGenerator.getInstance("AES");
-        keyGen.init(128); // Key size: 128, 192, or 256 bits
+        // 128 bit key, can also be 192 or 256
+        keyGen.init(128);
         return keyGen.generateKey();
     }
 
@@ -23,10 +24,12 @@ public class Aes {
      */
     public static String encrypt(String password, SecretKey secretKey) throws Exception {
         System.out.println("AES Encryption");
-        Cipher cipher = Cipher.getInstance("AES"); // AES encryption mode
+        // AES encryption mode
+        Cipher cipher = Cipher.getInstance("AES");
         cipher.init(Cipher.ENCRYPT_MODE, secretKey);
         byte[] encryptedBytes = cipher.doFinal(password.getBytes());
-        return bytesToHex(encryptedBytes); // Convert to Hex
+        // Convert to Hex
+        return bytesToHex(encryptedBytes);
     }
 
     /**
@@ -35,9 +38,11 @@ public class Aes {
      * @param secretKey the secret key
      */
     public static String decrypt(String password, SecretKey secretKey) throws Exception {
+        System.out.println("AES Decryption");
         Cipher cipher = Cipher.getInstance("AES");
         cipher.init(Cipher.DECRYPT_MODE, secretKey);
-        byte[] encryptedBytes = hexToBytes(password); // Convert Hex to Bytes
+        // Convert Hex to Bytes
+        byte[] encryptedBytes = hexToBytes(password);
         byte[] decryptedBytes = cipher.doFinal(encryptedBytes);
         return new String(decryptedBytes);
     }

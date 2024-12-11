@@ -5,7 +5,7 @@ import encryption.Vigenere;
 import java.util.Scanner;
 
 public class StoreMenu {
-    public static void store() {
+    public static void store() throws Exception {
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
 
@@ -55,8 +55,7 @@ public class StoreMenu {
                             // Remove break and add the Enigma encryption menu
                             break;
                         case 5:
-                            System.out.println("AES");
-                            // Remove break and add the AES encryption menu
+                            AesMenu.aes();
                             break;
                         case 0:
                             System.out.println("Back...");

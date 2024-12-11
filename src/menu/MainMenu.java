@@ -10,7 +10,7 @@ public class MainMenu {
      * Main menu of the application
      * Allows user to navigate to different options
      */
-    public static void mainMenu() {
+    public static void mainMenu() throws Exception {
         Scanner scanner = new Scanner(System.in);
         int[] validChoices = {1, 2, 3, 4, 5, 0};
         boolean running = true;
