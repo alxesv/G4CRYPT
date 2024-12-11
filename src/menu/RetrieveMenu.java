@@ -13,12 +13,15 @@ import java.util.Scanner;
 
 /**
  * RetrieveMenu class provides a menu-based interface for retrieving passwords from a CSV file.
+ * It allows the user to decrypt passwords using various decryption methods such as ROT, Enigma, AES, etc.
  */
 public class RetrieveMenu {
 
     /**
      * Main method to handle the password retrieval menu.
      * Displays passwords stored in a CSV file and allows the user to decrypt them using various methods.
+     *
+     * @throws Exception If any error occurs during the decryption process.
      */
     public static void retrieve() throws Exception {
         System.out.println("--- Retrieve Password Menu ---\n");
@@ -83,6 +86,8 @@ public class RetrieveMenu {
     /**
      * Decrypts a password using the specified method and arguments.
      *
+     * This method determines which decryption method to use (ROT, ENIGMA, AES, etc.) and applies it to the encrypted password.
+     *
      * @param encryptedPassword The encrypted password to decrypt.
      * @param method The decryption method to use (e.g., ROT, ENIGMA, AES, etc.).
      * @param args The arguments required for the decryption method (e.g., key, rotors, etc.).
@@ -93,7 +98,7 @@ public class RetrieveMenu {
 
         switch (method.toUpperCase()) {
             case "ROT":
-                if(args!=null){
+                if(args != null) {
                     int X = Integer.parseInt(args);
                     password = Rot.decryptRot(encryptedPassword, X);
                     return password;
@@ -125,7 +130,7 @@ public class RetrieveMenu {
                 // Decrypt using AES encryption
                 if (args != null) {
                     try {
-                        // Decode the secret Key
+                        // Decode the secret key
                         byte[] decodedKey = Base64.getDecoder().decode(args);
                         SecretKey key = new SecretKeySpec(decodedKey, 0, decodedKey.length, "AES");
 
@@ -149,18 +154,17 @@ public class RetrieveMenu {
                 return "We encountered a problem decrypting your password, please wait.";
 
             case "POLYBIUS":
-                if(args != null){
+                // Decrypt using Polybius square cipher
+                if(args != null) {
                     char[][] grid = stringToGrid(args);
-
-                    // Decrypt using Polybius square cipher
                     password = Polybius.decrypt(encryptedPassword, grid);
                     return password;
                 }
-                return "Error: No grid provided for Polybius";
-
+                return "Error: No grid provided for Polybius.";
 
             case "RC4":
-                if(args != null){
+                // Decrypt using RC4 cipher
+                if(args != null) {
                     password = Rc4.Rc4Decrypt(encryptedPassword, args);
                     return password;
                 }
@@ -171,15 +175,24 @@ public class RetrieveMenu {
         }
     }
 
+    /**
+     * Converts a 25-character string into a 5x5 grid (Polybius square).
+     * <p>
+     * The string must have exactly 25 characters, and the method fills a 5x5 grid with the characters from the string.
+     *
+     * @param text The string to convert into a 5x5 grid.
+     * @return A 5x5 character grid representing the Polybius square.
+     * @throws IllegalArgumentException If the input text does not have exactly 25 characters.
+     */
     public static char[][] stringToGrid(String text) {
-        // Vérifie que le texte a exactement 25 caractères
+        // Check that the text has exactly 25 characters
         if (text.length() != 25) {
             throw new IllegalArgumentException("Text must have exactly 25 characters.");
         }
 
         char[][] grid = new char[5][5];
 
-        // Remplir le tableau 5x5 avec les caractères du texte
+        // Fill the 5x5 grid with characters from the text
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
                 grid[i][j] = text.charAt(i * 5 + j);
@@ -188,5 +201,4 @@ public class RetrieveMenu {
 
         return grid;
     }
-
 }
