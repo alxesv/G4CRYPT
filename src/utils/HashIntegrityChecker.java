@@ -1,3 +1,5 @@
+package utils;
+
 import hash.Md5;
 import hash.Sha256;
 
