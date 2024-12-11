@@ -1,5 +1,5 @@
-import MD5.Md5;
-import SHA256.Sha256;
+import hash.Md5;
+import hash.Sha256;
 
 public class HashIntegrityChecker {
 
@@ -8,7 +8,7 @@ public class HashIntegrityChecker {
      */
 
     public static void main(String[] args) {
-        String message = Checker("Sha256", "test", "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08");
+        boolean message = Checker("Sha256", "test", "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08");
         System.out.println(message);
     }
 
@@ -37,6 +37,5 @@ public class HashIntegrityChecker {
             System.out.println("Method Error");
             return false;
         }
-        
     }
 }

@@ -1,11 +1,11 @@
-package SHA256;
+package hash;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class Sha256 {
+public class Md5 {
 
     private static final Charset UTF_8 = StandardCharsets.UTF_8;
 
@@ -16,7 +16,7 @@ public class Sha256 {
     private static byte[] digest(byte[] input) {
         MessageDigest md;
         try {
-            md = MessageDigest.getInstance("SHA256");
+            md = MessageDigest.getInstance("MD5");
         } catch (NoSuchAlgorithmException e) {
             throw new IllegalArgumentException(e);
         }
@@ -36,6 +36,7 @@ public class Sha256 {
         return sb.toString();
     }
 
+
     /*
      * main caller
      */
@@ -44,16 +45,16 @@ public class Sha256 {
 
         // Hashing function
 
-        byte[] sha256InBytes = Sha256.digest(message.getBytes(UTF_8));
+        byte[] md5InBytes = Md5.digest(message.getBytes(UTF_8));
 
-        return bytesToHex(sha256InBytes);
+        return bytesToHex(md5InBytes);
     }
 
     /*
-     * just main being main
+     * just main being main... (adapt if needed)
      */
 
     public static void main(String[] args) {
-        System.out.println("Sha256 Hashing method");
+        System.out.println("Md5 Hashing method");
     }
 }
