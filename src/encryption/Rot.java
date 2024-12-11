@@ -3,6 +3,8 @@ package encryption;
 import java.util.ArrayList;
 import java.util.List;
 
+import static utils.SaveData.saveData;
+
 //import static utils.SaveData.saveData;
 
 public class Rot {
@@ -12,8 +14,6 @@ public class Rot {
      * @param rot the rotation to apply
      * @return the encrypted text
      */
-
-    private static List<String> passwordData = new ArrayList<>();
 
     public static String encryptRot(String text, int rot) {
             StringBuilder result = new StringBuilder();
@@ -34,10 +34,6 @@ public class Rot {
                     return text;
                 }
             }
-            // store the encrypted word and the rotation to the list
-            passwordData.add(result.toString());
-            passwordData.add(String.valueOf(rot));
-            passwordData.add("ROT");
             return result.toString();
     }
 
