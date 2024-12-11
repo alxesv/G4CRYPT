@@ -1,14 +1,13 @@
-package SHA256;
+package hash;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class Sha256 {
+public class Md5 {
 
     private static final Charset UTF_8 = StandardCharsets.UTF_8;
-    private static final String OUTPUT_FORMAT = "%-20s:%s";
 
     /*
      * tries the selected method and digests with the selected method
@@ -17,7 +16,7 @@ public class Sha256 {
     private static byte[] digest(byte[] input) {
         MessageDigest md;
         try {
-            md = MessageDigest.getInstance("SHA256");
+            md = MessageDigest.getInstance("MD5");
         } catch (NoSuchAlgorithmException e) {
             throw new IllegalArgumentException(e);
         }
@@ -37,24 +36,18 @@ public class Sha256 {
         return sb.toString();
     }
 
+
     /*
-     * main caller, currently just outputs stuff in the console
+     * main caller
      */
 
-    public static void formatter(String message) {
+    public static String hashString(String message) {
 
-        //message props
+        // Hashing function
 
-        System.out.println(String.format(OUTPUT_FORMAT, "Input (string)", message));
-        System.out.println(String.format(OUTPUT_FORMAT, "Input (length)", message.length()));
+        byte[] md5InBytes = Md5.digest(message.getBytes(UTF_8));
 
-        // hash props
-
-        byte[] sha256InBytes = Sha256.digest(message.getBytes(UTF_8));
-        System.out.println(String.format(OUTPUT_FORMAT, "SHA256 (hex) ", bytesToHex(sha256InBytes)));
-        // fixed length, 16 bytes, 128 bits.
-        System.out.println(String.format(OUTPUT_FORMAT, "SHA256 (length)", sha256InBytes.length));
-
+        return bytesToHex(md5InBytes);
     }
 
     /*
@@ -62,7 +55,6 @@ public class Sha256 {
      */
 
     public static void main(String[] args) {
-        System.out.println("--------------------");
-        formatter("testing");
+        System.out.println("Md5 Hashing method");
     }
 }
