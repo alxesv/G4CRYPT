@@ -51,8 +51,7 @@ public class StoreMenu {
                             VigenereMenu.vigenere();
                             break;
                         case 3:
-                            System.out.println("RC4");
-                            // Remove break and add the RC4 encryption menu
+                            Rc4Menu.RC4();
                             break;
                         case 4:
                             System.out.println("Enigma");
