@@ -50,6 +50,7 @@ public class MainMenu {
                     // Remove break and add the generating password menu
                     break;
                 case 4:
+                    // Display help menu
                     System.out.println("Help");
                     HelpMenu.help();
                     break;
