@@ -42,8 +42,7 @@ public class MainMenu {
                     StoreMenu.store();
                     break;
                 case 2:
-                    System.out.println("Retrieve");
-                    // Remove break and add the retrieving password menu
+                    RetrieveMenu.retrieve();
                     break;
                 case 3:
                     System.out.println("Generate");
