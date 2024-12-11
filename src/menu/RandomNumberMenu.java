@@ -48,7 +48,7 @@ public class RandomNumberMenu {
             }
 
             // Generate random numbers
-            BigInteger result = Lfsr.run(seed, iterations);
+            BigInteger result = Lfsr.run(seed, iterations, java.util.Optional.empty());
             System.out.println("Random number: " + result);
             // End of the menu
             lfsrMenuRunning = false;
