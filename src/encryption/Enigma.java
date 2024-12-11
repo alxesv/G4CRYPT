@@ -9,9 +9,9 @@ public class Enigma {
     private static final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     // Rotor positions
-    private int rotor1Position;
-    private int rotor2Position;
-    private int rotor3Position;
+    private final int rotor1Position;
+    private final int rotor2Position;
+    private final int rotor3Position;
 
     /**
      * Constructor to initialize the rotors' starting positions.

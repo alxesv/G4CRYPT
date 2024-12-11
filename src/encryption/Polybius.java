@@ -75,5 +75,4 @@ public class Polybius {
         // Return the decrypted text
         return decryptedText.toString();
     }
-
 }
