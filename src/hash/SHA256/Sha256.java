@@ -8,7 +8,6 @@ import java.security.NoSuchAlgorithmException;
 public class Sha256 {
 
     private static final Charset UTF_8 = StandardCharsets.UTF_8;
-    private static final String OUTPUT_FORMAT = "%-20s:%s";
 
     /*
      * tries the selected method and digests with the selected method
@@ -38,23 +37,16 @@ public class Sha256 {
     }
 
     /*
-     * main caller, currently just outputs stuff in the console
+     * main caller
      */
 
-    public static void formatter(String message) {
+    public static String formatter(String message) {
 
-        //message props
-
-        System.out.println(String.format(OUTPUT_FORMAT, "Input (string)", message));
-        System.out.println(String.format(OUTPUT_FORMAT, "Input (length)", message.length()));
-
-        // hash props
+        // Hashing function
 
         byte[] sha256InBytes = Sha256.digest(message.getBytes(UTF_8));
-        System.out.println(String.format(OUTPUT_FORMAT, "SHA256 (hex) ", bytesToHex(sha256InBytes)));
-        // fixed length, 16 bytes, 128 bits.
-        System.out.println(String.format(OUTPUT_FORMAT, "SHA256 (length)", sha256InBytes.length));
 
+        return bytesToHex(sha256InBytes);
     }
 
     /*

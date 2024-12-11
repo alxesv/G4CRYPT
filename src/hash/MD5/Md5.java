@@ -8,7 +8,6 @@ import java.security.NoSuchAlgorithmException;
 public class Md5 {
 
     private static final Charset UTF_8 = StandardCharsets.UTF_8;
-    private static final String OUTPUT_FORMAT = "%-20s:%s";
 
     /*
      * tries the selected method and digests with the selected method
@@ -22,7 +21,6 @@ public class Md5 {
             throw new IllegalArgumentException(e);
         }
         byte[] result = md.digest(input);
-        System.out.println(result);
         return result;
     }
 
@@ -40,16 +38,14 @@ public class Md5 {
 
 
     /*
-     * main caller, currently just outputs stuff in the console
+     * main caller
      */
 
     public static String formatter(String message) {
 
+        // Hashing function
+
         byte[] md5InBytes = Md5.digest(message.getBytes(UTF_8));
-
-        
-
-
 
         return bytesToHex(md5InBytes);
     }
