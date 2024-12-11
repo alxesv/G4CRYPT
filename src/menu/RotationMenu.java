@@ -24,21 +24,22 @@ public class RotationMenu {
         System.out.println("Encrypting password for service: " + service + " using key: " + rot);
 
         // Encrypt the password
-        String encryptedPassword = Rot.encryptRot(password, rot);
-        System.out.println("Encrypted password: " + encryptedPassword);
+        //String encryptedPassword = Rot.encryptRot(password, rot);
+        //System.out.println("Encrypted password: " + encryptedPassword);
 
         // Decrypt the password
         // TODO Remove this and add it to the decryption menu
-        String decryptedPassword = Vigenere.decrypt(encryptedPassword, rot);
-        System.out.println("Decrypted password: " + decryptedPassword);
+        //String decryptedPassword = Vigenere.decrypt(encryptedPassword, rot);
+        //System.out.println("Decrypted password: " + decryptedPassword);
     }
 
     /**
      * Get the password from the user and format it
+     *
      * @return
      */
 
-    private static String getPassword(){
+    private static String getPassword() {
         Scanner scanner = new Scanner(System.in);
         // Ask the user for the password
         while (true) {
@@ -51,4 +52,5 @@ public class RotationMenu {
                 System.out.println("Please enter a valid password (alphabet characters only).");
             }
         }
+    }
 }
