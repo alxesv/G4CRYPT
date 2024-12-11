@@ -11,7 +11,6 @@ public class HelpMenu {
         boolean running = true;
 
         while (running) {
-            int wrongInputCounter = 0;
             // Display help menu options
             printHelpOptions();
 
@@ -43,7 +42,8 @@ public class HelpMenu {
                     break;
                 case 0:
                     System.out.println("Returning to main menu...");
-                    running = false; // Exit the help menu
+                    // Exit the help menu
+                    running = false;
                     break;
                 default:
                     System.out.println("Invalid choice. Please try again.");
@@ -101,6 +101,7 @@ public class HelpMenu {
 
     /**
      * Hold the program until the user presses Enter
+     * This is to allow the user to read the information before returning to the help menu
      */
     private static void hold(){
         System.out.println("Press Enter to go back to the help menu...");
