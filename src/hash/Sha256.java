@@ -9,7 +9,7 @@ public class Sha256 {
 
     private static final Charset UTF_8 = StandardCharsets.UTF_8;
 
-    /*
+    /**
      * tries the selected method and digests with the selected method
      */
 
@@ -24,7 +24,7 @@ public class Sha256 {
         return result;
     }
 
-    /*
+    /**
      * transforms bytes to hex, uses stringbuilder
      */
 
@@ -36,7 +36,7 @@ public class Sha256 {
         return sb.toString();
     }
 
-    /*
+    /**
      * main caller
      * @param message the message to hash
      */

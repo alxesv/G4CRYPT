@@ -9,7 +9,7 @@ public class Md5 {
 
     private static final Charset UTF_8 = StandardCharsets.UTF_8;
 
-    /*
+    /**
      * tries the selected method and digests with the selected method
      */
 
@@ -24,7 +24,7 @@ public class Md5 {
         return result;
     }
 
-    /*
+    /**
      * transforms bytes to hex, uses stringbuilder
      */
 
@@ -37,7 +37,7 @@ public class Md5 {
     }
 
 
-    /*
+    /**
      * main caller
      * @param message message to encrypt
      */
