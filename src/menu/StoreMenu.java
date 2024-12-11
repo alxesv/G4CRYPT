@@ -55,8 +55,8 @@ public class StoreMenu {
                             // Remove break and add the RC4 encryption menu
                             break;
                         case 4:
-                            System.out.println("Enigma");
-                            // Remove break and add the Enigma encryption menu
+                            EnigmaMenu.enigma();
+                            running = false;
                             break;
                         case 5:
                             AesMenu.aes();
@@ -67,6 +67,7 @@ public class StoreMenu {
                         default:
                             System.out.println("Invalid choice. Please try again.");
                     }
+                    break;
 
                 case 2:
                     System.out.println("Chain of encryption methods");
