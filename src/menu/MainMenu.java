@@ -2,7 +2,6 @@ package menu;
 
 import java.util.Scanner;
 import java.util.stream.IntStream;
-import menu.HelpMenu;
 
 public class MainMenu {
     /**
@@ -38,8 +37,7 @@ public class MainMenu {
             // Navigate to the selected option
             switch (choice) {
                 case 1:
-                    System.out.println("Store");
-                    // Remove break and add the storing password menu
+                    StoreMenu.store();
                     break;
                 case 2:
                     System.out.println("Retrieve");
@@ -50,7 +48,7 @@ public class MainMenu {
                     // Remove break and add the generating password menu
                     break;
                 case 4:
-                    System.out.println("Help");
+                    // Display help menu
                     HelpMenu.help();
                     break;
                 case 0:
