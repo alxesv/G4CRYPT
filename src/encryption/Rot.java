@@ -3,7 +3,15 @@ package encryption;
 import java.util.ArrayList;
 import java.util.List;
 
+//import static utils.SaveData.saveData;
+
 public class Rot {
+
+    /** Encrypt a text with a rotation
+     * @param text the text to encrypt
+     * @param rot the rotation to apply
+     * @return the encrypted text
+     */
 
     private static List<String> passwordData = new ArrayList<>();
 
@@ -26,6 +34,7 @@ public class Rot {
             // store the encrypted word and the rotation to the list
             passwordData.add(result.toString());
             passwordData.add(String.valueOf(rot));
+            passwordData.add("ROT");
             return passwordData.toString();
         } else {
             // error message if the word contains lower and upper case
@@ -34,6 +43,10 @@ public class Rot {
         }
     }
 
+    //public static void storeData() {
+    //    System.out.println(passwordData);
+    //    saveData("amazon", passwordData.get(0), passwordData.get(2));
+    //}
 
         public static String decryptRot (){
             // extract the text and the rotation from the list
