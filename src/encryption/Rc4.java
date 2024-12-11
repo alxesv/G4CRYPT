@@ -96,7 +96,12 @@ public class Rc4 {
         return new String(decryptedText);
     }
 
-    // Encrypts from input using the maintable and the rc4 algorithm
+    /**
+     * Encrypts or decrypts from input using the maintable and the rc4 algorithm
+     * @param input message to encrypt or decrypt
+     * @param mainTable seed generated table
+     * @return encrypted or decrypted message
+     */
 
     public static byte[] rc4EncryptDecrypt(byte[] input, int[] mainTable) {
         // PRGA
@@ -117,7 +122,12 @@ public class Rc4 {
         return output;
     }
 
-    // swapp 2 values without using a temporary variable
+    /**
+     * swapps 2 values without using a temporary variable
+     * @param array
+     * @param i
+     * @param j
+     */
 
     private static void swap(int[] array, int i, int j) {
         array[i] = array[i] + array[j];
