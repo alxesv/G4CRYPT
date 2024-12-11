@@ -39,6 +39,7 @@ public class Md5 {
 
     /*
      * main caller
+     * @param message message to encrypt
      */
 
     public static String hashString(String message) {
@@ -48,13 +49,5 @@ public class Md5 {
         byte[] md5InBytes = Md5.digest(message.getBytes(UTF_8));
 
         return bytesToHex(md5InBytes);
-    }
-
-    /*
-     * just main being main... (adapt if needed)
-     */
-
-    public static void main(String[] args) {
-        System.out.println("Md5 Hashing method");
     }
 }

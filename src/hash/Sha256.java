@@ -38,6 +38,7 @@ public class Sha256 {
 
     /*
      * main caller
+     * @param message the message to hash
      */
 
     public static String hashString(String message) {
@@ -47,13 +48,5 @@ public class Sha256 {
         byte[] sha256InBytes = Sha256.digest(message.getBytes(UTF_8));
 
         return bytesToHex(sha256InBytes);
-    }
-
-    /*
-     * just main being main
-     */
-
-    public static void main(String[] args) {
-        System.out.println("Sha256 Hashing method");
     }
 }

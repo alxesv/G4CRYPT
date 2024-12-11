@@ -6,17 +6,10 @@ import hash.Sha256;
 public class HashIntegrityChecker {
 
     /*
-     * Just main being main
-     */
-
-    public static void main(String[] args) {
-        boolean message = Checker("Sha256", "test", "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08");
-        System.out.println(message);
-    }
-
-    /*
-     * Checks the method, hashes messageString in the selected method (only md5 and SHA256 are supported right now) 
-     * and compares it with the given existingMessageString
+     * checks hash integrity from
+     * @param method the method used to hash
+     * @param messageString the text matching the hash
+     * @param the hash previously obtained 
      */
 
     public static boolean Checker(String method, String messageString, String existingMessageString) {
