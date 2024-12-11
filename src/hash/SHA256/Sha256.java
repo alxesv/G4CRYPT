@@ -40,7 +40,7 @@ public class Sha256 {
      * main caller
      */
 
-    public static String formatter(String message) {
+    public static String hashString(String message) {
 
         // Hashing function
 
@@ -54,7 +54,6 @@ public class Sha256 {
      */
 
     public static void main(String[] args) {
-        System.out.println("--------------------");
-        formatter("testing");
+        System.out.println("Sha256 Hashing method");
     }
 }

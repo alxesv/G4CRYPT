@@ -41,7 +41,7 @@ public class Md5 {
      * main caller
      */
 
-    public static String formatter(String message) {
+    public static String hashString(String message) {
 
         // Hashing function
 
@@ -55,7 +55,6 @@ public class Md5 {
      */
 
     public static void main(String[] args) {
-        System.out.println("--------------------");
-        formatter("testing");
+        System.out.println("Md5 Hashing method");
     }
 }
