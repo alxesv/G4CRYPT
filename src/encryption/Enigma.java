@@ -5,9 +5,6 @@ public class Enigma {
     private static final String ROTOR1 = "EKMFLGDQVZNTOWYHXUSPAIBRCJ";
     private static final String ROTOR2 = "BJDKSIRUXALHWTMCQGZNPYFVOE";
     private static final String ROTOR3 = "BDFHJLCPRTXVZNYEIWGAKMUSQO";
-    private static final String ROTOR4 = "ESOVPZJAYQUIRHXLNFTGKDCMWB";
-    private static final String ROTOR5 = "VZBRGITYUPSDNHLXAWMJQOFECK";
-    private static final String ROTOR6 = "JPGVOUMFYQBENHZRDKASXLICTW";
 
     private static final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
@@ -96,17 +93,17 @@ public class Enigma {
         index = ALPHABET.indexOf(rotor3Char);
         char mirroredChar = ALPHABET.charAt((25 - index) % 26);
 
-        // Pass through Rotor 4 (right to left)
+        // Pass through Rotor 3 (right to left)
         index = (ALPHABET.indexOf(mirroredChar) + rotor3Position) % 26;
-        char rotor4Char = ROTOR4.charAt(index);
+        char rotor4Char = ROTOR3.charAt(index);
 
-        // Pass through Rotor 5 (right to left)
+        // Pass through Rotor 2 (right to left)
         index = (ALPHABET.indexOf(rotor4Char) + rotor2Position) % 26;
-        char rotor5Char = ROTOR5.charAt(index);
+        char rotor5Char = ROTOR2.charAt(index);
 
-        // Pass through Rotor 6 (right to left)
+        // Pass through Rotor 1 (right to left)
         index = (ALPHABET.indexOf(rotor5Char) + rotor1Position) % 26;
-        return ROTOR6.charAt(index);
+        return ROTOR1.charAt(index);
     }
 
     /**
@@ -116,19 +113,19 @@ public class Enigma {
      * @return The decrypted character.
      */
     private char decryptCharacter(char letter) {
-        int index = ROTOR6.indexOf(letter);
+        int index = ROTOR1.indexOf(letter);
 
         // Undo pass through Rotor 6 (right to left)
         index = (index - rotor1Position + 26) % 26;
         char rotor5Char = ALPHABET.charAt(index);
 
         // Undo pass through Rotor 5 (right to left)
-        index = ROTOR5.indexOf(rotor5Char);
+        index = ROTOR2.indexOf(rotor5Char);
         index = (index - rotor2Position + 26) % 26;
         char rotor4Char = ALPHABET.charAt(index);
 
         // Undo pass through Rotor 4 (right to left)
-        index = ROTOR4.indexOf(rotor4Char);
+        index = ROTOR3.indexOf(rotor4Char);
         index = (index - rotor3Position + 26) % 26;
         char mirroredChar = ALPHABET.charAt(index);
 
