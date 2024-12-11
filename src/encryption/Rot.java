@@ -16,6 +16,9 @@ public class Rot {
     private static List<String> passwordData = new ArrayList<>();
 
     public static String encryptRot(String text, int rot) {
+
+        // removes spaces from the word
+        text = text.replaceAll(" ", "");
         // check if the word is totally in lower or upper case
         if (text.equals(text.toLowerCase()) || text.equals(text.toUpperCase())) {
             StringBuilder result = new StringBuilder();
