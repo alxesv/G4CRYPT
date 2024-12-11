@@ -38,7 +38,7 @@ public class Rot {
             passwordData.add(result.toString());
             passwordData.add(String.valueOf(rot));
             passwordData.add("ROT");
-            return passwordData.get(0);
+            return result.toString();
     }
 
     /** Decrypt a text with a rotation
