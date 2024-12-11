@@ -10,7 +10,7 @@ public class Main {
         System.out.println("A simple password manager");
 
         System.out.println(encryptRot("hello", -4));
-        System.out.println(decryptRot());
+        storeData();
 
         // Start the main menu
         MainMenu.mainMenu();
