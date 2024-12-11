@@ -1,3 +1,4 @@
+import static encryption.Rot.*;
 import java.util.Scanner;
 import java.util.stream.IntStream;
 import menu.MainMenu;
@@ -11,5 +12,4 @@ public class Main {
         // Start the main menu
         MainMenu.mainMenu();
     }
-
 }
