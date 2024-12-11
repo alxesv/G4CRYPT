@@ -22,7 +22,7 @@ public class RetrieveMenu {
      * Main method to handle the password retrieval menu.
      * Displays passwords stored in a CSV file and allows the user to decrypt them using various methods.
      */
-    public static void retrieve() {
+    public static void retrieve() throws Exception {
         System.out.println("--- Retrieve Password Menu ---\n");
 
         // Retrieve the list of passwords from the CSV file
