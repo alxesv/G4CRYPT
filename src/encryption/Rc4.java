@@ -1,9 +1,14 @@
+package encryption;
+
 import java.util.Arrays;
 
 public class Rc4 {
     public static void main(String[] args) {
+        Rc4Cipher("seed");
+    }
+    public static void Rc4Cipher(String seed) {
         int[] mainTable = new int[256];
-        int[] key = {1, 2, 3, 4, 5}; // Example key, make one from lfsr
+        int[] key = {1, 2, 3, 4, 5}; // Example key, make one from lfsr with seed 
 
         // KSA
         
