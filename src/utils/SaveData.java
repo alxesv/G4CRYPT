@@ -25,7 +25,7 @@ public class SaveData {
             if (!fileExists) {
                 writer.write("Password Store\n");
             }
-            // Write the data
+            // Write the data to the file
             writer.write(name + ":" + password + ":" + method + ":" + key + "\n");
             System.out.println("Data saved successfully");
         } catch (IOException e) {
