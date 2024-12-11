@@ -25,7 +25,6 @@ public class AesMenu {
 
         // Encrypt the password
         String encryptedPassword = Aes.encrypt(password, secretKey);
-        System.out.println(secretKey);
         System.out.println("Encrypted password: " + encryptedPassword);
 
         // Decrypt the password
