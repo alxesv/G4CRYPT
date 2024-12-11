@@ -45,9 +45,11 @@ public class RotationMenu {
         while (true) {
             System.out.print("Enter the password: ");
             String password = scanner.nextLine();
-            // Validate the password limit to alphabet characters only
+            // Remove spaces from the password
             password = password.replaceAll(" ", "");
+            // Validate the password limit to alphabet characters only
             if (!password.isEmpty() && password.matches("[a-zA-Z]+")) {
+                // Validate the password limit to upper or lower case only
                 if(password.equals(password.toLowerCase()) || password.equals(password.toUpperCase())){
                     return password;
                 } else {

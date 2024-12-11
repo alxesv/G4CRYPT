@@ -22,18 +22,18 @@ public class Rot {
             for (int i = 0; i < text.length(); i++) {
                 char c = text.charAt(i);
                 // check if the letter is a letter
-                //if (Character.isLetter(c)) {
+                if (Character.isLetter(c)) {
                     if (Character.isLowerCase(c)) {
                         result.append((char) (96 + (c - 96 + rot) % 26));
                         System.out.println(result);
                     } else {
                         result.append((char) (40 + (c - 40 + rot) % 26));
                     }
-                //} else {
+                } else {
                     // if it is not a letter, display the word with an error message
-                    //System.out.printf("Seule les lettres sont acceptées");
-                    //return text;
-                //}
+                    System.out.printf("Seule les lettres sont acceptées");
+                    return text;
+                }
             }
             // store the encrypted word and the rotation to the list
             passwordData.add(result.toString());
