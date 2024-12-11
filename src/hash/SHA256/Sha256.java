@@ -50,7 +50,7 @@ public class Sha256 {
     }
 
     /*
-     * just main being main... (adapt if needed)
+     * just main being main
      */
 
     public static void main(String[] args) {
