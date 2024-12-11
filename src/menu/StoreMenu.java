@@ -44,7 +44,7 @@ public class StoreMenu {
 
                     switch(encryptionChoice){
                         case 1:
-                            System.out.println("Rotation (Ceasar)");
+                            RotationMenu.rotation();
                             // Remove break and add the rotation encryption menu
                             break;
                         case 2:
