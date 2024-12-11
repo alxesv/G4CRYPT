@@ -47,6 +47,12 @@ public class Rot {
     //    saveData("amazon", passwordData.get(0), passwordData.get(2));
     //}
 
+    /** Decrypt a text with a rotation
+     * @param text the text to decrypt
+     * @param text
+     * @param rot
+     * @return
+     */
         public static String decryptRot (String text, int rot){
             // decrypt with the encrypt function and a negative rotation
             return encryptRot(text, 26 - rot);
