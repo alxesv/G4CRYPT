@@ -51,14 +51,17 @@ public class StoreMenu {
                             VigenereMenu.vigenere();
                             break;
                         case 3:
+                            PolybiusMenu.polybius();
+                            break;
+                        case 4:
                             System.out.println("RC4");
                             // Remove break and add the RC4 encryption menu
                             break;
-                        case 4:
-                            System.out.println("Enigma");
-                            // Remove break and add the Enigma encryption menu
-                            break;
                         case 5:
+                            EnigmaMenu.enigma();
+                            running = false;
+                            break;
+                        case 6:
                             AesMenu.aes();
                             break;
                         case 0:
@@ -67,6 +70,7 @@ public class StoreMenu {
                         default:
                             System.out.println("Invalid choice. Please try again.");
                     }
+                    break;
 
                 case 2:
                     System.out.println("Chain of encryption methods");
@@ -91,9 +95,10 @@ public class StoreMenu {
         System.out.println("Please select one of the following encryption methods:");
         System.out.println("1. Rotation (Ceasar)");
         System.out.println("2. Vigenère");
-        System.out.println("3. RC4");
-        System.out.println("4. Enigma");
-        System.out.println("5. AES");
+        System.out.println("3. Polybius");
+        System.out.println("4. RC4");
+        System.out.println("5. Enigma");
+        System.out.println("6. AES");
         System.out.println("0. Return to main menu");
     }
 
