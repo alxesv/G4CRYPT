@@ -84,9 +84,4 @@ public class Polybius {
         // Return the decrypted text
         return decryptedText.toString();
     }
-
-    public static void main(String[] args) {
-        System.out.println(Polybius.encrypt("Hello world"));
-    }
-
 }
