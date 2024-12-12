@@ -14,7 +14,7 @@ public class Sha256Menu {
 
         // Ask the name of the service
         String service = Common.getServiceName();
-        // Ask the password to encrypt
+        // Ask the password to hash
         String password = getPassword();
 
         // Display the service
@@ -23,6 +23,9 @@ public class Sha256Menu {
         // Hash the password
         String encryptedPassword = Sha256.hashString(password);
         System.out.println("Encrypted password: " + encryptedPassword);
+
+
+        // Cannot decrypt as it's a hashing algorithm, to compare a hash with a text see utils.HashingIntegrityChecker.java
 
     }
 
