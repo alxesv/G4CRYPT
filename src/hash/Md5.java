@@ -11,6 +11,7 @@ public class Md5 {
 
     /**
      * tries the selected method and digests with the selected method
+     * @input the text to hash
      */
 
     private static byte[] digest(byte[] input) {
@@ -26,6 +27,7 @@ public class Md5 {
 
     /**
      * transforms bytes to hex, uses stringbuilder
+     * @bytes the bytes to transform
      */
 
     private static String bytesToHex(byte[] bytes) {
@@ -39,7 +41,7 @@ public class Md5 {
 
     /**
      * main caller
-     * @param message message to encrypt
+     * @param message message to hash
      */
 
     public static String hashString(String message) {
