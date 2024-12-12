@@ -32,6 +32,9 @@ public class HashMenu {
                 case 2:
                     Sha256Menu.Sha256();
                     break;
+                case 3:
+                    HmacMenu.HMAC();
+                    break;
                 case 0:
                     System.out.println("Back...");
                     break;
@@ -49,6 +52,7 @@ public class HashMenu {
         System.out.println("\n--- Store Password ---");
         System.out.println("1. Hash with MD5");
         System.out.println("2. Hash with SHA256");
+        System.out.println("3. Hash with HMAC");
         System.out.println("0. Return to main menu");
     }
 }
