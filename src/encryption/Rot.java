@@ -30,7 +30,7 @@ public class Rot {
                     }
                 } else {
                     // if it is not a letter, display the word with an error message
-                    System.out.printf("Seule les lettres sont acceptées");
+                    System.out.printf("Only letters are allowed in the text. %s is not a letter. \n", c);
                     return text;
                 }
             }

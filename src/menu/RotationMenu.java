@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static utils.SaveData.saveData;
+
 public class RotationMenu {
 
     private static List<String> passwordData = new ArrayList<>();
@@ -32,12 +34,8 @@ public class RotationMenu {
 
         // Encrypt the password
         String encryptedPassword = Rot.encryptRot(password, rot);
-        // Store the encrypted password
-        passwordData.add(service);
-        passwordData.add(password);
-        passwordData.add("ROT");
-        passwordData.add(String.valueOf(rot));
         System.out.println("Encrypted password: " + encryptedPassword);
+        saveData(service, encryptedPassword, "ROT", String.valueOf(rot));
 
         // Decrypt the password
         // TODO Remove this and add it to the decryption menu
