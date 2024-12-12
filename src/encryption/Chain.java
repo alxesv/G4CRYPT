@@ -62,7 +62,11 @@ public class Chain {
                     encryptedPassword = Rc4.encrypt(encryptedPassword, variables);
                     System.out.println("Encrypted password with RC4 :  " + encryptedPassword);
                     break;
-
+                case "POLYBIUS":
+                    char[][] polybiusSquare = Polybius.stringToGrid(variables);
+                    encryptedPassword = Polybius.encrypt(encryptedPassword, polybiusSquare);
+                    System.out.println("Encrypted password with Polybius :  " + encryptedPassword);
+                    break;
             }
         }
         // Return the password after applying all encryption methods
@@ -129,6 +133,12 @@ public class Chain {
                     decryptedPassword = Rc4.decrypt(decryptedPassword, variables);
                     System.out.println("Decrypted password with RC4 :  " + decryptedPassword);
                     break;
+                case "POLYBIUS":
+                    char[][] polybiusSquare = Polybius.stringToGrid(variables);
+                    decryptedPassword = Polybius.decrypt(decryptedPassword, polybiusSquare);
+                    System.out.println("Decrypted password with Polybius :  " + decryptedPassword);
+                    break;
+
             }
         }
 
