@@ -53,6 +53,11 @@ public class Rc4Menu {
         }
     }
 
+    /**
+     * Get a seed to initiate RC4
+     * @return the seed
+     */
+
     private static String getSeed() {
         Scanner scanner = new Scanner(System.in);
         // Ask the user for the password
