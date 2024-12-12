@@ -3,11 +3,9 @@ package menu;
 import utils.AesKeyManager;
 import utils.Common;
 import utils.SaveData;
-
-import javax.crypto.SecretKey;
-
 import hash.Hmac;
 
+import javax.crypto.SecretKey;
 import java.util.Scanner;
 
 public class HmacMenu {

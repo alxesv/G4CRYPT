@@ -46,12 +46,18 @@ public class MainMenu {
                     RetrieveMenu.retrieve();
                     break;
                 case 3:
-                    GeneratePasswordMenu.generatePassword();
+                    HashMenu.hash();
                     break;
                 case 4:
-                    RandomNumberMenu.randomNumber();
+                    // #TODO with hashIntegrityChecker 
                     break;
                 case 5:
+                    GeneratePasswordMenu.generatePassword();
+                    break;
+                case 6:
+                    RandomNumberMenu.randomNumber();
+                    break;
+                case 7:
                     // Display help menu
                     HelpMenu.help();
                     break;
@@ -74,9 +80,11 @@ public class MainMenu {
     private static void printOptions(){
         System.out.println("1. Store password");
         System.out.println("2. Retrieve password");
-        System.out.println("3. Generate secure password");
-        System.out.println("4. Generate random numbers");
-        System.out.println("5. Help - How to use the application");
+        System.out.println("3. Hash password");
+        System.out.println("4. Retrieve hashed password"); // #TODO with hashIntegrityChecker
+        System.out.println("5. Generate secure password");
+        System.out.println("6. Generate random numbers");
+        System.out.println("7. Help - How to use the application");
         System.out.println("0. Exit");
     }
 
