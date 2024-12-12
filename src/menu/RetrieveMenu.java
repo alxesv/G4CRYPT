@@ -2,13 +2,18 @@ package menu;
 
 import encryption.*;
 import utils.Common;
+import utils.HashIntegrityChecker;
 import utils.RetrieveCSV;
+import hash.Hmac;
+import hash.Md5;
+import hash.Sha256;
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 /**
@@ -95,6 +100,7 @@ public class RetrieveMenu {
      */
     public static String decryptPassword(String encryptedPassword, String method, String args) {
         String password = "";
+        Scanner scanner = new Scanner(System.in);
 
         switch (method.toUpperCase()) {
             case "ROT":
@@ -174,6 +180,36 @@ public class RetrieveMenu {
                 // Decrypt using a chain of encryption methods
                 password = Chain.handleChainDecryption(encryptedPassword, args);
                 return password;
+            
+            case "MD5":
+                // Get the password the user wants to compare
+                String passwordToCompareMd5 = scanner.nextLine();
+
+                // Hash password in the correct method
+                Md5.hashString(passwordToCompareMd5);
+
+                // Compares both passwords using MD5
+                HashIntegrityChecker.Checker(method, passwordToCompareMd5, encryptedPassword, Optional.empty());
+
+            case "SHA256":
+                // Get the password the user wants to compare
+                String passwordToCompareSha256 = scanner.nextLine();
+
+                // Hash password in the correct method
+                Sha256.hashString(passwordToCompareSha256);
+
+                // Compares both passwords using MD5
+                HashIntegrityChecker.Checker(method, passwordToCompareSha256, encryptedPassword, Optional.empty());
+
+            case "HMAC":
+                // Get the password the user wants to compare
+                String passwordToCompareHMAC = scanner.nextLine();
+
+                // Hash password in the correct method
+                Hmac.hashString(password, args);
+
+                // Compares both passwords using MD5
+                HashIntegrityChecker.Checker(method, passwordToCompareHMAC, encryptedPassword, Optional.of(args));
 
             default:
                 return "Unsupported decryption method: " + method;
