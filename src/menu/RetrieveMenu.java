@@ -176,6 +176,11 @@ public class RetrieveMenu {
                 }
                 return "Error: No seed provided.";
 
+            case "CHAIN":
+                // Decrypt using a chain of encryption methods
+                password = Chain.handleChainDecryption(encryptedPassword, args);
+                return password;
+            
             case "MD5":
                 // Get the password the user wants to compare
                 String passwordToCompareMd5 = scanner.nextLine();
