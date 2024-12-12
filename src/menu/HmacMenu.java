@@ -26,7 +26,7 @@ public class HmacMenu {
         System.out.println("Encrypting password for service: " + service);
 
         // Encrypt the password
-        String hashedPassword = Hmac.encrypt(password, seed);
+        String hashedPassword = Hmac.hashString(password, seed);
         System.out.println("Encrypted password: " + hashedPassword);
         System.out.println("Seed used to encrypt password: " + seed);
 

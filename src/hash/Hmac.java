@@ -13,7 +13,7 @@ public class Hmac {
      * @param input the password to hash
      * @return double hashed password
      */
-    public static String encrypt(String input, String seed) {
+    public static String hashString(String input, String seed) {
 
         // get pseudo random value from LFSR with a see
         String randFromSeed = Lfsr.run(seed, 50, Optional.of(256)).toString(16);

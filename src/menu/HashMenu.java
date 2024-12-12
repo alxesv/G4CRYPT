@@ -35,6 +35,9 @@ public class HashMenu {
                 case 3:
                     HmacMenu.HMAC();
                     break;
+                case 4:
+                    RetrieveMenu.retrieve();
+                    break;
                 case 0:
                     System.out.println("Back...");
                     break;
@@ -49,10 +52,11 @@ public class HashMenu {
      * Display single encryption methods options
      */
     private static void displayHashOptions() {
-        System.out.println("\n--- Store Password ---");
+        System.out.println("\n--- Hash Password ---");
         System.out.println("1. Hash with MD5");
         System.out.println("2. Hash with SHA256");
         System.out.println("3. Hash with HMAC");
+        System.out.println("4. Retrieve Hashed Password");
         System.out.println("0. Return to main menu");
     }
 }

@@ -1,9 +1,13 @@
 package menu;
 
 import hash.Sha256;
+import utils.AesKeyManager;
 import utils.Common;
+import utils.SaveData;
 
 import java.util.Scanner;
+
+import javax.crypto.SecretKey;
 
 public class Sha256Menu {
     /**
@@ -21,11 +25,14 @@ public class Sha256Menu {
         System.out.println("Encrypting password for service: " + service);
 
         // Hash the password
-        String encryptedPassword = Sha256.hashString(password);
-        System.out.println("Encrypted password: " + encryptedPassword);
+        String hashedPassword = Sha256.hashString(password);
+        System.out.println("Encrypted password: " + hashedPassword);
 
+        //Retrieve AES Key
+        SecretKey aesKey = AesKeyManager.loadOrGenerateKey();
 
-        // Cannot decrypt as it's a hashing algorithm, to compare a hash with a text see utils.HashingIntegrityChecker.java
+        // Save the encrypted password and the seed
+        SaveData.saveData(service, hashedPassword, "SHA256", null, aesKey);
 
     }
 

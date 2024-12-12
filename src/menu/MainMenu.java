@@ -49,15 +49,12 @@ public class MainMenu {
                     HashMenu.hash();
                     break;
                 case 4:
-                    // #TODO with hashIntegrityChecker 
-                    break;
-                case 5:
                     GeneratePasswordMenu.generatePassword();
                     break;
-                case 6:
+                case 5:
                     RandomNumberMenu.randomNumber();
                     break;
-                case 7:
+                case 6:
                     // Display help menu
                     HelpMenu.help();
                     break;
