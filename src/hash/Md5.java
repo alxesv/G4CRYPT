@@ -5,6 +5,8 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import utils.Common;
+
 public class Md5 {
 
     private static final Charset UTF_8 = StandardCharsets.UTF_8;
@@ -24,30 +26,18 @@ public class Md5 {
         return result;
     }
 
-    /**
-     * transforms bytes to hex, uses stringbuilder
-     */
-
-    private static String bytesToHex(byte[] bytes) {
-        StringBuilder sb = new StringBuilder();
-        for (byte b : bytes) {
-            sb.append(String.format("%02x", b));
-        }
-        return sb.toString();
-    }
-
 
     /**
      * main caller
-     * @param message message to encrypt
+     * @param message message to hash
      */
 
     public static String hashString(String message) {
 
-        // Hashing function
+        // calls hashing function
 
         byte[] md5InBytes = Md5.digest(message.getBytes(UTF_8));
 
-        return bytesToHex(md5InBytes);
+        return Common.bytesToHex(md5InBytes);
     }
 }
