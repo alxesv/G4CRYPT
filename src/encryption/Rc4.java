@@ -21,26 +21,30 @@ public class Rc4 {
         int[] mainTable = new int[256];
         int[] key = new int[256];
 
-        BigInteger keyBigInteger = Lfsr.run(seed, 50, Optional.of(256));
+        BigInteger keyBigInteger = Lfsr.run(seed, 50, Optional.of(key.length));
 
         String keyString = keyBigInteger.toString(2);
 
+        while(keyString.length() < key.length) {
+            keyString = keyString.concat("1");
+        }
+
         // fills key array with each lfsr bit
 
-        for(int e = 0; e<256; e++) {
+        for(int e = 0; e<key.length; e++) {
             key[e] = Character.getNumericValue(keyString.charAt(e));
         }
 
         // fills mainTable from index 0 with value 0 to index 255 vith value 255
         
-        for (int i = 0; i < 256; i++) {
+        for (int i = 0; i < key.length; i++) {
             mainTable[i] = i;
         }
 
         // KSA
 
         int j = 0;
-        for (int i = 0; i < 256; i++) {
+        for (int i = 0; i < key.length; i++) {
             j = (j + mainTable[i] + key[i]) % 256;
             swap(mainTable, i, j);
         }
@@ -66,26 +70,32 @@ public class Rc4 {
         int[] mainTable = new int[256];
         int[] key = new int[256];
 
-        BigInteger keyBigInteger = Lfsr.run(seed, 50, Optional.of(256));
+        BigInteger keyBigInteger = Lfsr.run(seed, 50, Optional.of(key.length));
 
         String keyString = keyBigInteger.toString(2);
 
+        // if the keyString value returned by lfsr is not 256 bits long, then it gets a new 1 at the end
+
+        while(keyString.length() < key.length) {
+            keyString = keyString.concat("1");
+        }
+
         // fills key array with each lfsr bit
 
-        for(int e = 0; e<256; e++) {
+        for(int e = 0; e<key.length; e++) {
             key[e] = Character.getNumericValue(keyString.charAt(e));
         }
 
         // fills mainTable from index 0 with value 0 to index 255 vith value 255
         
-        for (int i = 0; i < 256; i++) {
+        for (int i = 0; i < key.length; i++) {
             mainTable[i] = i;
         }
 
         // KSA
 
         int j = 0;
-        for (int i = 0; i < 256; i++) {
+        for (int i = 0; i < key.length; i++) {
             j = (j + mainTable[i] + key[i]) % 256;
             swap(mainTable, i, j);
         }
