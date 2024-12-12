@@ -38,7 +38,6 @@ public class Aes {
      * @param secretKey the secret key
      */
     public static String decrypt(String password, SecretKey secretKey) throws Exception {
-        System.out.println("AES Decryption");
         Cipher cipher = Cipher.getInstance("AES");
         cipher.init(Cipher.DECRYPT_MODE, secretKey);
         // Convert Hex to Bytes

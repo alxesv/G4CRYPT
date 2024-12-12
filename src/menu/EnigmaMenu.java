@@ -1,9 +1,11 @@
 package menu;
 
 import encryption.Enigma;
+import utils.AesKeyManager;
 import utils.Common;
 import utils.SaveData;
 
+import javax.crypto.SecretKey;
 import java.util.Scanner;
 
 public class EnigmaMenu {
@@ -45,9 +47,12 @@ public class EnigmaMenu {
 
         System.out.println("Encrypted Password: " + encryptedPassword);
 
+        //Retrieve AES Key
+        SecretKey aesKey = AesKeyManager.loadOrGenerateKey();
+
         // Save the encrypted password and rotor positions
         String rotorPositions = rotor1 + "," + rotor2 + "," + rotor3;
-        SaveData.saveData(service, encryptedPassword, "ENIGMA", rotorPositions);
+        SaveData.saveData(service, encryptedPassword, "ENIGMA", rotorPositions, aesKey);
     }
 
     /**

@@ -38,13 +38,12 @@ public class Rot {
 
     /** Decrypt a text with a rotation
      * @param text the text to decrypt
-     * @param text
-     * @param rot
-     * @return
+     * @param rot the rotation of the letters
+     * @return the decrypted text as a String
      */
-        public static String decryptRot (String text, int rot){
-            // decrypt with the encrypt function and a negative rotation
-            return encryptRot(text, 26 - rot);
-        }
+    public static String decryptRot (String text, int rot){
+        // decrypt with the encrypt function and a negative rotation
+        return encryptRot(text, 26 - rot);
+    }
 
 }

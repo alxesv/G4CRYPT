@@ -1,28 +1,29 @@
 package menu;
 
-import encryption.Aes;
-import encryption.Enigma;
-import encryption.Polybius;
-import encryption.Vigenere;
+import encryption.*;
 import utils.Common;
 import utils.RetrieveCSV;
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.List;
 import java.util.Scanner;
 
 /**
  * RetrieveMenu class provides a menu-based interface for retrieving passwords from a CSV file.
+ * It allows the user to decrypt passwords using various decryption methods such as ROT, Enigma, AES, etc.
  */
 public class RetrieveMenu {
 
     /**
      * Main method to handle the password retrieval menu.
      * Displays passwords stored in a CSV file and allows the user to decrypt them using various methods.
+     *
+     * @throws Exception If any error occurs during the decryption process.
      */
-    public static void retrieve() {
+    public static void retrieve() throws Exception {
         System.out.println("--- Retrieve Password Menu ---\n");
 
         // Retrieve the list of passwords from the CSV file
@@ -85,6 +86,8 @@ public class RetrieveMenu {
     /**
      * Decrypts a password using the specified method and arguments.
      *
+     * This method determines which decryption method to use (ROT, ENIGMA, AES, etc.) and applies it to the encrypted password.
+     *
      * @param encryptedPassword The encrypted password to decrypt.
      * @param method The decryption method to use (e.g., ROT, ENIGMA, AES, etc.).
      * @param args The arguments required for the decryption method (e.g., key, rotors, etc.).
@@ -95,11 +98,13 @@ public class RetrieveMenu {
 
         switch (method.toUpperCase()) {
             case "ROT":
-                // Decrypt using ROT cipher
-                int shift = args != null ? Integer.parseInt(args) : 0;
-                // TODO: Implement the decryptROT function
-                System.out.println("decrypt ROT...");
-                return "TODO";
+                if(args != null) {
+                    int X = Integer.parseInt(args);
+                    password = Rot.decryptRot(encryptedPassword, X);
+                    return password;
+                }
+
+                return "Error: No rotation index provided.";
 
             case "ENIGMA":
                 // Decrypt using Enigma machine simulation
@@ -125,10 +130,8 @@ public class RetrieveMenu {
                 // Decrypt using AES encryption
                 if (args != null) {
                     try {
-                        // Convert the hexadecimal key to bytes
-                        byte[] decodedKey = Common.hexToBytes(args);
-
-                        // Rebuild the secret key
+                        // Decode the secret key
+                        byte[] decodedKey = Base64.getDecoder().decode(args);
                         SecretKey key = new SecretKeySpec(decodedKey, 0, decodedKey.length, "AES");
 
                         password = Aes.decrypt(encryptedPassword, key);
@@ -151,37 +154,24 @@ public class RetrieveMenu {
                 return "We encountered a problem decrypting your password, please wait.";
 
             case "POLYBIUS":
-                if(args != null){
-                    char[][] grid = stringToGrid(args);
-
-                    // Decrypt using Polybius square cipher
+                // Decrypt using Polybius square cipher
+                if(args != null) {
+                    char[][] grid = Polybius.stringToGrid(args);
                     password = Polybius.decrypt(encryptedPassword, grid);
                     return password;
                 }
-                return "Error: No grid provided for Polybius";
-
+                return "Error: No grid provided for Polybius.";
 
             case "RC4":
-                // TODO: Implement RC4 decryption
-                return "";
+                // Decrypt using RC4 cipher
+                if(args != null) {
+                    password = Rc4.Rc4Decrypt(encryptedPassword, args);
+                    return password;
+                }
+                return "Error: No seed provided.";
 
             default:
                 return "Unsupported decryption method: " + method;
         }
     }
-
-    private static char[][] stringToGrid(String args) {
-        char[][] grid = new char[5][5];
-        String[] rows = args.split(";"); // Diviser les lignes par le point-virgule
-
-        for (int i = 0; i < rows.length; i++) {
-            String[] cols = rows[i].split(","); // Diviser les colonnes par la virgule
-            for (int j = 0; j < cols.length; j++) {
-                grid[i][j] = cols[j].charAt(0); // Convertir la chaîne en caractère
-            }
-        }
-
-        return grid;
-    }
-
 }

@@ -1,5 +1,9 @@
 package encryption;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class Polybius {
     /**
      * Encrypts a given plaintext string using the Polybius cipher.
@@ -74,5 +78,77 @@ public class Polybius {
 
         // Return the decrypted text
         return decryptedText.toString();
+    }
+
+    /**
+     * Convert the grid to a string representation
+     * @param grid the Polybius grid
+     * @return the grid as a string
+     */
+    public static String gridToString(char[][] grid) {
+        StringBuilder builder = new StringBuilder();
+        for (char[] row : grid) {
+            for (char c : row) {
+                builder.append(c);
+            }
+        }
+        return builder.toString();
+    }
+
+    /**
+     * Converts a 25-character string into a 5x5 grid (Polybius square).
+     * <p>
+     * The string must have exactly 25 characters, and the method fills a 5x5 grid with the characters from the string.
+     *
+     * @param text The string to convert into a 5x5 grid.
+     * @return A 5x5 character grid representing the Polybius square.
+     * @throws IllegalArgumentException If the input text does not have exactly 25 characters.
+     */
+    public static char[][] stringToGrid(String text) {
+        // Check that the text has exactly 25 characters
+        if (text.length() != 25) {
+            throw new IllegalArgumentException("Text must have exactly 25 characters.");
+        }
+
+        char[][] grid = new char[5][5];
+
+        // Fill the 5x5 grid with characters from the text
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                grid[i][j] = text.charAt(i * 5 + j);
+            }
+        }
+
+        return grid;
+    }
+
+    /**
+     * Generate the Polybius grid (5x5 without 'J')
+     * @return a 5x5 char grid
+     */
+    public static char[][] generatePolybiusGrid() {
+        char[][] grid = new char[5][5];
+        List<Character> letters = new ArrayList<>();
+
+        // Ajouter les lettres de l'alphabet (sans 'J') à une liste
+        for (char letter = 'A'; letter <= 'Z'; letter++) {
+            if (letter != 'W') { // format W = VV
+                letters.add(letter);
+            }
+        }
+
+        // Mélanger les lettres
+        Collections.shuffle(letters);
+
+        // Remplir la grille avec les lettres mélangées
+        int index = 0;
+        for (int row = 0; row < 5; row++) {
+            for (int col = 0; col < 5; col++) {
+                grid[row][col] = letters.get(index);
+                index++;
+            }
+        }
+
+        return grid;
     }
 }
