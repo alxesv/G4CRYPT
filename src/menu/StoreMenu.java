@@ -75,8 +75,7 @@ public class StoreMenu {
                     break;
 
                 case 2:
-                    System.out.println("Chain of encryption methods");
-                    // Remove break and add the chain of encryption menu
+                    ChainMenu.chain();
                     break;
                 case 0:
                     System.out.println("Returning to main menu...");

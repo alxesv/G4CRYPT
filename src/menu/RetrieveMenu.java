@@ -170,6 +170,11 @@ public class RetrieveMenu {
                 }
                 return "Error: No seed provided.";
 
+            case "CHAIN":
+                // Decrypt using a chain of encryption methods
+                password = Chain.handleChainDecryption(encryptedPassword, args);
+                return password;
+
             default:
                 return "Unsupported decryption method: " + method;
         }
