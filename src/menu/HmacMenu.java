@@ -34,7 +34,7 @@ public class HmacMenu {
         SecretKey aesKey = AesKeyManager.loadOrGenerateKey();
 
         // Save the encrypted password and the seed
-        SaveData.saveData(service, hashedPassword, "RC4", seed, aesKey);
+        SaveData.saveData(service, hashedPassword, "HMAC", seed, aesKey);
     }
 
     /**
