@@ -14,7 +14,7 @@ public class Rc4 {
      * @return hex format crypted message
      */
 
-    public static String Rc4Encrypt(String message, String seed) {
+    public static String encrypt(String message, String seed) {
 
         // seed may become a parameter
 
@@ -59,7 +59,7 @@ public class Rc4 {
      * @return clear message, decrypted
      */
 
-     public static String Rc4Decrypt(String message, String seed) {
+     public static String decrypt(String message, String seed) {
 
         // seed may become a parameter
 

@@ -54,8 +54,7 @@ public class StoreMenu {
                             PolybiusMenu.polybius();
                             break;
                         case 4:
-                            System.out.println("RC4");
-                            // Remove break and add the RC4 encryption menu
+                            Rc4Menu.RC4();
                             break;
                         case 5:
                             EnigmaMenu.enigma();
