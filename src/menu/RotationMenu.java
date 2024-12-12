@@ -38,7 +38,6 @@ public class RotationMenu {
         // Encrypt the password
         String encryptedPassword = Rot.encryptRot(password, rot);
         System.out.println("Encrypted password: " + encryptedPassword);
-        saveData(service, encryptedPassword, "ROT", String.valueOf(rot));
 
         //Retrieve AES Key
         SecretKey aesKey = AesKeyManager.loadOrGenerateKey();

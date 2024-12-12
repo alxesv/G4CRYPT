@@ -1,8 +1,11 @@
 package menu;
 
 import encryption.Rc4;
+import utils.AesKeyManager;
 import utils.Common;
+import utils.SaveData;
 
+import javax.crypto.SecretKey;
 import java.util.Scanner;
 
 public class Rc4Menu {
@@ -27,11 +30,11 @@ public class Rc4Menu {
         System.out.println("Encrypted password: " + encryptedPassword);
         System.out.println("Seed used to encrypt password: " + seed);
 
-        // Decrypt the password
-        // TODO Remove this and add it to the decryption menu
-        String decryptedPassword = Rc4.decrypt(encryptedPassword, seed);
-        System.out.println("Decrypted password: " + decryptedPassword);
+        //Retrieve AES Key
+        SecretKey aesKey = AesKeyManager.loadOrGenerateKey();
 
+        // Save the encrypted password and the seed
+        SaveData.saveData(service, encryptedPassword, "RC4", seed, aesKey);
     }
 
     /**
