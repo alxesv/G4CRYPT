@@ -165,7 +165,7 @@ public class RetrieveMenu {
             case "RC4":
                 // Decrypt using RC4 cipher
                 if(args != null) {
-                    password = Rc4.Rc4Decrypt(encryptedPassword, args);
+                    password = Rc4.decrypt(encryptedPassword, args);
                     return password;
                 }
                 return "Error: No seed provided.";
