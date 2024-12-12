@@ -24,7 +24,6 @@ public class Rot {
                 if (Character.isLetter(c)) {
                     if (Character.isLowerCase(c)) {
                         result.append((char) (96 + (c - 96 + rot) % 26));
-                        System.out.println(result);
                     } else {
                         result.append((char) (40 + (c - 40 + rot) % 26));
                     }

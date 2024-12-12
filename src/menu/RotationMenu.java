@@ -39,8 +39,8 @@ public class RotationMenu {
 
         // Decrypt the password
         // TODO Remove this and add it to the decryption menu
-        String decryptedPassword = Rot.decryptRot(encryptedPassword, rot);
-        System.out.println("Decrypted password: " + decryptedPassword);
+        //String decryptedPassword = Rot.decryptRot(encryptedPassword, rot);
+        //System.out.println("Decrypted password: " + decryptedPassword);
     }
 
     /**
