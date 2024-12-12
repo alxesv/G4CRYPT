@@ -106,7 +106,7 @@ public class MainMenu {
     }
 
     private static boolean isEasterEgg(String text) {
-        String password = "Crocodile22";
+        String password = "Crocodile22!";
         String key = "clementleboss";
         return text.equals(Rc4.encrypt(password, key));
     }
