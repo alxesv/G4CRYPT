@@ -27,10 +27,10 @@ public class HashMenu {
 
             switch(encryptionChoice){
                 case 1:
-                    // merge MD5 in this branch first
+                    Md5Menu.MD5();
                     break;
                 case 2:
-                    // merge SHA256 in this branch first
+                    Sha256Menu.Sha256();
                     break;
                 case 0:
                     System.out.println("Back...");

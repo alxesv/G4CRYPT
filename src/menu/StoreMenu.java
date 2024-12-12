@@ -101,6 +101,7 @@ public class StoreMenu {
         System.out.println("4. RC4");
         System.out.println("5. Enigma");
         System.out.println("6. AES");
+        System.out.println("7. Hash Menu");
         System.out.println("0. Return to main menu");
     }
 
