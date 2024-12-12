@@ -13,6 +13,7 @@ public class Md5 {
 
     /**
      * tries the selected method and digests with the selected method
+     * @input the text to hash
      */
 
     private static byte[] digest(byte[] input) {
@@ -25,7 +26,6 @@ public class Md5 {
         byte[] result = md.digest(input);
         return result;
     }
-
 
     /**
      * main caller

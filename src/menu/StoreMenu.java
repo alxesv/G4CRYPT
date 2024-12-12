@@ -1,6 +1,7 @@
 package menu;
 
 import encryption.Vigenere;
+import menu.HashMenu;
 
 import java.util.Scanner;
 
@@ -62,6 +63,9 @@ public class StoreMenu {
                         case 6:
                             AesMenu.aes();
                             break;
+                        case 7:
+                            HashMenu.hash();
+                            break;
                         case 0:
                             System.out.println("Back...");
                             break;
@@ -97,6 +101,7 @@ public class StoreMenu {
         System.out.println("4. RC4");
         System.out.println("5. Enigma");
         System.out.println("6. AES");
+        System.out.println("7. Hash Menu");
         System.out.println("0. Return to main menu");
     }
 

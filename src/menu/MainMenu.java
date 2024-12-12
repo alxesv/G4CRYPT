@@ -1,5 +1,6 @@
 package menu;
 
+import utils.GeneratePassword;
 import utils.Lfsr;
 
 import java.util.Scanner;
@@ -45,8 +46,7 @@ public class MainMenu {
                     RetrieveMenu.retrieve();
                     break;
                 case 3:
-                    System.out.println("Generate");
-                    // Remove break and add the generating password menu
+                    GeneratePasswordMenu.generatePassword();
                     break;
                 case 4:
                     RandomNumberMenu.randomNumber();
