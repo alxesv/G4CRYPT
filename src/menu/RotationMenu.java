@@ -4,9 +4,15 @@ import encryption.Rot;
 import encryption.Vigenere;
 import utils.Common;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
+import static utils.SaveData.saveData;
+
 public class RotationMenu {
+
+    private static List<String> passwordData = new ArrayList<>();
 
     /**
      * Display the Rotation menu
@@ -17,8 +23,11 @@ public class RotationMenu {
         String service = Common.getServiceName();
         // Ask the password to encrypt
         String password = getPassword();
+
+
         // Ask the key to encrypt the password
         int rot = getRotateKey();
+
 
         // Display the service and key
         System.out.println("Encrypting password for service: " + service + " using key: " + rot);
@@ -26,11 +35,12 @@ public class RotationMenu {
         // Encrypt the password
         String encryptedPassword = Rot.encryptRot(password, rot);
         System.out.println("Encrypted password: " + encryptedPassword);
+        saveData(service, encryptedPassword, "ROT", String.valueOf(rot));
 
         // Decrypt the password
         // TODO Remove this and add it to the decryption menu
-        String decryptedPassword = Rot.decryptRot(encryptedPassword, rot);
-        System.out.println("Decrypted password: " + decryptedPassword);
+        //String decryptedPassword = Rot.decryptRot(encryptedPassword, rot);
+        //System.out.println("Decrypted password: " + decryptedPassword);
     }
 
     /**

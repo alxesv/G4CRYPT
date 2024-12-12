@@ -25,10 +25,6 @@ public class SaveData {
 
         // Store the data in the file
         try (FileWriter writer = new FileWriter(file, true)) {
-            // If the file does not exist, write the header
-            if (!fileExists) {
-                writer.write("Password Store\n");
-            }
             // Write the data to the file
             writer.write(name + ":" + password + ":" + method + ":" + key + "\n");
             System.out.println("Data saved successfully");
