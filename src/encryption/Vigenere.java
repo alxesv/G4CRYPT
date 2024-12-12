@@ -10,6 +10,8 @@ public class Vigenere {
          * @return The encrypted message.
          */
         public static String encrypt(String messageToEncrypt, String key) {
+            messageToEncrypt = messageToEncrypt.toLowerCase();
+            key = key.toLowerCase();
             StringBuilder encryptedMessage = new StringBuilder();
             char charToEncrypt;
             int charToEncryptAsciiValue;
@@ -28,8 +30,8 @@ public class Vigenere {
                 // 1. Add ASCII values of the message character and key character.
                 // 2. Subtract 192 to normalize to alphabetic range.
                 // 3. Apply modulo 26 to cycle through alphabet.
-                // 4. Add 96 and subtract 1 to map back to ASCII lowercase letters.
-                int encryptedLetterAsciiValue = ((((charToEncryptAsciiValue + KeyCharAsciiValue) - 192) % 26) + 96) - 1;
+                // 4. Add 97 to map back to ASCII lowercase letters.
+                int encryptedLetterAsciiValue = ((((charToEncryptAsciiValue-1 + KeyCharAsciiValue-1) - 192) % 26) + 97);
 
                 encryptedMessage.append((char) encryptedLetterAsciiValue);
             }
@@ -44,6 +46,8 @@ public class Vigenere {
          * @return The decrypted message.
          */
         public static String decrypt(String encryptedMessage, String key) {
+            encryptedMessage = encryptedMessage.toLowerCase();
+            key = key.toLowerCase();
             StringBuilder decryptedMessage = new StringBuilder();
             char encryptedChar;
             int encryptedCharAsciiValue;

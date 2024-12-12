@@ -80,7 +80,7 @@ public class RotationMenu {
      * @return the Rotation key
      */
 
-    private static int getRotateKey() {
+    public static int getRotateKey() {
         Scanner scanner = new Scanner(System.in);
         // Ask the user for the key
         while (true) {

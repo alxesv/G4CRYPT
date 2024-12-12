@@ -24,7 +24,6 @@ public class SaveData {
      */
     public static void saveData(String name, String password, String method, String key, SecretKey aesKey) {
         File file = new File("data.csv");
-        boolean fileExists = file.exists();
 
         // Préparer la ligne à enregistrer
         String dataLine = name + ":" + password + ":" + method + ":" + key;
@@ -34,10 +33,7 @@ public class SaveData {
 
             // Écrire la donnée chiffrée dans le fichier
             try (FileWriter writer = new FileWriter(file, true)) {
-                // Si le fichier n'existe pas, écrire un en-tête
-                if (!fileExists) {
-                    writer.write("Encrypted Password Store\n");
-                }
+
                 // Ajouter la ligne chiffrée au fichier
                 writer.write(encryptedData + "\n");
                 System.out.println("Data saved successfully (Encrypted)");

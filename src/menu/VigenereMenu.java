@@ -39,7 +39,7 @@ public class VigenereMenu {
      * Get the Vigenere key from the user
      * @return the Vigenere key
      */
-    private static String getVigenereKey() {
+    public static String getVigenereKey() {
         Scanner scanner = new Scanner(System.in);
         // Ask the user for the key
         while (true) {
