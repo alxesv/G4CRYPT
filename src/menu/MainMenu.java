@@ -59,6 +59,9 @@ public class MainMenu {
                         RandomNumberMenu.randomNumber();
                         break;
                     case 5:
+                        SteganographyMenu.steganography();
+                        break;
+                    case 6:
                         // Display help menu
                         HelpMenu.help();
                         break;
@@ -97,7 +100,8 @@ public class MainMenu {
         System.out.println("2. Retrieve password");
         System.out.println("3. Generate secure password");
         System.out.println("4. Generate random numbers");
-        System.out.println("5. Help - How to use the application");
+        System.out.println("5. Steganography");
+        System.out.println("6. Help - How to use the application");
         System.out.println("0. Exit");
     }
 
