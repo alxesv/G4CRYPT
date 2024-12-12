@@ -1,9 +1,13 @@
 package menu;
 
 import hash.Md5;
+import utils.AesKeyManager;
 import utils.Common;
+import utils.SaveData;
 
 import java.util.Scanner;
+
+import javax.crypto.SecretKey;
 
 public class Md5Menu {
     /**
@@ -20,11 +24,16 @@ public class Md5Menu {
         // Display the service
         System.out.println("Hashing password for service: " + service);
 
-        // Encrypt the password
+        // Hash the password
         String hashedPassword = Md5.hashString(password);
         System.out.println("Hashed password: " + hashedPassword);
 
-        // Cannot decrypt as it's a hashing algorithm, to compare a hash with a text see utils.HashingIntegrityChecker.java
+        //Retrieve AES Key
+        SecretKey aesKey = AesKeyManager.loadOrGenerateKey();
+
+        // Save the encrypted password and the seed
+        SaveData.saveData(service, hashedPassword, "SHA256", null, aesKey);
+        
     }
 
     /**

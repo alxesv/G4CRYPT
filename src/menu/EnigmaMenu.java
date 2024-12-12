@@ -63,7 +63,7 @@ public class EnigmaMenu {
      * @param prompt  Prompt message to display to the user
      * @return A positive integer within the range 0-25
      */
-    private static int getPositiveInt(Scanner scanner, String prompt) {
+    public static int getPositiveInt(Scanner scanner, String prompt) {
         int value;
         while (true) {
             System.out.print(prompt);

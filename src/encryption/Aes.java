@@ -23,7 +23,6 @@ public class Aes {
      * @param secretKey the secret key
      */
     public static String encrypt(String password, SecretKey secretKey) throws Exception {
-        System.out.println("AES Encryption");
         // AES encryption mode
         Cipher cipher = Cipher.getInstance("AES");
         cipher.init(Cipher.ENCRYPT_MODE, secretKey);

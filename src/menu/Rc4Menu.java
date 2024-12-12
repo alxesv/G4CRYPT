@@ -61,11 +61,11 @@ public class Rc4Menu {
      * @return the seed
      */
 
-    private static String getSeed() {
+    public static String getSeed() {
         Scanner scanner = new Scanner(System.in);
         // Ask the user for the password
         while (true) {
-            System.out.print("Enter a seed (required to retrieve password later): ");
+            System.out.print("Enter a seed: ");
             String seed = scanner.nextLine();
             // Validate the password
             if (!seed.isEmpty()) {
