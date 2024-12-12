@@ -78,7 +78,6 @@ public class MainMenu {
         System.out.println("1. Store password");
         System.out.println("2. Retrieve password");
         System.out.println("3. Hash password");
-        System.out.println("4. Retrieve hashed password"); // #TODO with hashIntegrityChecker
         System.out.println("5. Generate secure password");
         System.out.println("6. Generate random numbers");
         System.out.println("7. Help - How to use the application");
