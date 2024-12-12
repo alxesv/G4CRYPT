@@ -27,7 +27,7 @@ public class Rc4 {
 
         // fills key array with each lfsr bit
 
-        for(int e = 0; e<256; e++) {
+        for(int e = 0; e<255; e++) {
             key[e] = Character.getNumericValue(keyString.charAt(e));
         }
 
