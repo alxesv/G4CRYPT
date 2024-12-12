@@ -23,13 +23,13 @@ public class Rc4Menu {
         System.out.println("Encrypting password for service: " + service);
 
         // Encrypt the password
-        String encryptedPassword = Rc4.Rc4Encrypt(password, seed);
+        String encryptedPassword = Rc4.encrypt(password, seed);
         System.out.println("Encrypted password: " + encryptedPassword);
-        System.out.println("Seed used to encrypt password" + seed);
+        System.out.println("Seed used to encrypt password: " + seed);
 
         // Decrypt the password
         // TODO Remove this and add it to the decryption menu
-        String decryptedPassword = Rc4.Rc4Decrypt(encryptedPassword, seed);
+        String decryptedPassword = Rc4.decrypt(encryptedPassword, seed);
         System.out.println("Decrypted password: " + decryptedPassword);
 
     }
