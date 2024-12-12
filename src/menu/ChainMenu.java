@@ -2,6 +2,7 @@ package menu;
 
 import encryption.Aes;
 import encryption.Chain;
+import encryption.Polybius;
 import utils.AesKeyManager;
 import utils.Common;
 import utils.SaveData;
@@ -21,7 +22,7 @@ public class ChainMenu {
      */
     public static void chain() throws Exception {
         Scanner scanner = new Scanner(System.in);
-        String[] availableOptions = {"ROT", "VIGENERE", "ENIGMA", "RC4", "AES"};
+        String[] availableOptions = {"ROT", "VIGENERE", "ENIGMA", "POLYBIUS", "RC4", "AES"};
         List<String> selectedMethods = new ArrayList<>();
         int maxChainLength = availableOptions.length; // Maximum chain length is the number of available options
         int minChainLength = 2; // Minimum chain length
@@ -137,6 +138,13 @@ public class ChainMenu {
                     String encodedSecretKey = Base64.getEncoder().encodeToString(secretKey.getEncoded());
                     methodVariables.append("AES").append(">").append(encodedSecretKey).append(";");
                     break;
+                case "POLYBIUS":
+                    System.out.println("Generating a Polybius square...");
+                    // Generate a Polybius square
+                    char[][] grid = Polybius.generatePolybiusGrid();
+                    String gridString = Polybius.gridToString(grid);
+                    methodVariables.append("POLYBIUS").append(">").append(gridString).append(";");
+                    break;
                 default:
                     System.out.println("Invalid method: " + method);
             }
@@ -155,9 +163,10 @@ public class ChainMenu {
         if(
             selectedMethods.contains("ROT") ||
             selectedMethods.contains("VIGENERE") ||
-            selectedMethods.contains("ENIGMA")
+            selectedMethods.contains("ENIGMA") ||
+            selectedMethods.contains("POLYBIUS")
         ){
-            // Limit to alphabet characters only
+            // Limit to alphabet characters only for ROT, Vigenere, Enigma, and Polybius
             while (true) {
                 System.out.print("Enter the password: ");
                 String password = scanner.nextLine();
@@ -185,15 +194,19 @@ public class ChainMenu {
     }
 
     /**
-     * Reorder the selected methods to ensure AES and RC4 are at the end of the chain
+     * Reorder the selected methods to ensure AES, RC4 and Polybius are at the end of the chain
      * because the other algorithms can't use special characters in the password.
      * @param selectedMethods the selected methods
      * @return the reordered methods
      */
     private static List<String> reorderSelectedMethods(List<String> selectedMethods){
         List<String> reorderedMethods = new ArrayList<>(selectedMethods);
+        boolean polybius = reorderedMethods.remove("POLYBIUS");
         boolean rc4 = reorderedMethods.remove("RC4");
         boolean aes = reorderedMethods.remove("AES");
+        if(polybius){
+            reorderedMethods.add("POLYBIUS");
+        }
         if(rc4){
             reorderedMethods.add("RC4");
         }
