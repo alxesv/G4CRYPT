@@ -31,7 +31,7 @@ public class VigenereMenu {
         //Retrieve AES Key
         SecretKey aesKey = AesKeyManager.loadOrGenerateKey();
 
-        // Save the encrypted password and rotor positions
+        // Save the encrypted password and the key
         SaveData.saveData(service, encryptedPassword, "VIGENERE", key, aesKey);
     }
 

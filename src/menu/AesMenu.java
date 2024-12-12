@@ -35,7 +35,7 @@ public class AesMenu {
 
         String encodedSecretKey = Base64.getEncoder().encodeToString(secretKey.getEncoded());
 
-        // Save the encrypted password and rotor positions
+        // Save the encrypted password and the encoded secret key
         SaveData.saveData(service, encryptedPassword, "AES", encodedSecretKey, aesKey);
     }
 

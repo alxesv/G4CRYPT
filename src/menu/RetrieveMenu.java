@@ -156,7 +156,7 @@ public class RetrieveMenu {
             case "POLYBIUS":
                 // Decrypt using Polybius square cipher
                 if(args != null) {
-                    char[][] grid = stringToGrid(args);
+                    char[][] grid = Polybius.stringToGrid(args);
                     password = Polybius.decrypt(encryptedPassword, grid);
                     return password;
                 }
@@ -173,32 +173,5 @@ public class RetrieveMenu {
             default:
                 return "Unsupported decryption method: " + method;
         }
-    }
-
-    /**
-     * Converts a 25-character string into a 5x5 grid (Polybius square).
-     * <p>
-     * The string must have exactly 25 characters, and the method fills a 5x5 grid with the characters from the string.
-     *
-     * @param text The string to convert into a 5x5 grid.
-     * @return A 5x5 character grid representing the Polybius square.
-     * @throws IllegalArgumentException If the input text does not have exactly 25 characters.
-     */
-    public static char[][] stringToGrid(String text) {
-        // Check that the text has exactly 25 characters
-        if (text.length() != 25) {
-            throw new IllegalArgumentException("Text must have exactly 25 characters.");
-        }
-
-        char[][] grid = new char[5][5];
-
-        // Fill the 5x5 grid with characters from the text
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 5; j++) {
-                grid[i][j] = text.charAt(i * 5 + j);
-            }
-        }
-
-        return grid;
     }
 }
