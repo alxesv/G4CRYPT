@@ -10,7 +10,8 @@ public class Sha256 {
     private static final Charset UTF_8 = StandardCharsets.UTF_8;
 
     /**
-     * tries the selected method and digests with the selected method
+     * tries the selected method and hash with the selected method
+     * @input the text to hash
      */
 
     private static byte[] digest(byte[] input) {
@@ -26,6 +27,7 @@ public class Sha256 {
 
     /**
      * transforms bytes to hex, uses stringbuilder
+     * @bytes the bytes to transform
      */
 
     private static String bytesToHex(byte[] bytes) {
