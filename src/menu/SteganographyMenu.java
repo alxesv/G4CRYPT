@@ -1,5 +1,6 @@
 package menu;
 
+import utils.Common;
 import utils.Steganography;
 
 import java.io.File;
@@ -15,25 +16,25 @@ public class SteganographyMenu {
         int choice;
 
         do {
-            System.out.println("--- STEGANOGRAPHY Encryption ---\n");
+            Common.printTitle("STEGANOGRAPHY MENU", "Welcome to the STEGANOGRAPHY menu!");
 
             // Ask if the user wants to hide or read a message
-            System.out.println("Would you like to:");
-            System.out.println("1. Hide a message");
-            System.out.println("2. Read a hidden message");
-            System.out.println("0. Exit");
+            System.out.println("\u001B[36mWould you like to:\u001B[0m");
+            System.out.println("\u001B[36m1.\u001B[0m Hide a message");
+            System.out.println("\u001B[36m2.\u001B[0m Read a hidden message");
+            System.out.println("\u001B[31m0.\u001B[0m Exit");
 
-            System.out.print("Choose an option: ");
+            System.out.print("\u001B[36mChoose an option: \u001B[0m");
             while (!scanner.hasNextInt()) {
-                System.out.println("Invalid input. Please enter a number.");
+                System.out.println("\u001B[31mInvalid input. Please enter a number.\u001B[0m");
                 scanner.next(); // Consume invalid input
-                System.out.print("Choose an option: ");
+                System.out.print("\u001B[36mChoose an option: \u001B[0m");
             }
             choice = scanner.nextInt();
             scanner.nextLine(); // Consume the newline character after nextInt()
 
             if (choice == 0) {
-                System.out.println("Exiting Steganography menu. Goodbye!");
+                System.out.println("\u001B[36mExiting Steganography menu. Goodbye!\u001B[0m");
                 break;
             }
 
@@ -45,7 +46,7 @@ public class SteganographyMenu {
                     handleReadMessage(scanner);
                     break;
                 default:
-                    System.out.println("Invalid choice. Please try again.\n");
+                    System.out.println("\u001B[31mInvalid choice. Please try again.\n\u001B[0m");
             }
 
         } while (choice != 0);
@@ -56,11 +57,11 @@ public class SteganographyMenu {
      * Print the options available for hiding a message
      */
     private static void printOptionsForHiding() {
-        System.out.println("1. Hide in an image");
-        System.out.println("2. Hide in a Text (released soon)");
-        System.out.println("3. Hide in a music (released soon)");
-        System.out.println("4. Hide in a video (released soon)");
-        System.out.println("0. Go back");
+        System.out.println("\u001B[36m1.\u001B[0m Hide in an image");
+        System.out.println("\u001B[36m2.\u001B[0m Hide in a Text (released soon)");
+        System.out.println("\u001B[36m3.\u001B[0m Hide in a music (released soon)");
+        System.out.println("\u001B[36m4.\u001B[0m Hide in a video (released soon)");
+        System.out.println("\u001B[31m0.\u001B[0m Go back");
     }
 
     /**
@@ -70,14 +71,14 @@ public class SteganographyMenu {
         int choice;
 
         do {
-            System.out.println("\n--- Hide Message ---");
+            Common.printTitle("HIDE MESSAGE", "Here you can hide a message in a picture ;)");
             printOptionsForHiding();
 
-            System.out.print("Choose an option: ");
+            System.out.print("\u001B[36mChoose an option: \u001B[0m");
             while (!scanner.hasNextInt()) {
-                System.out.println("Invalid input. Please enter a number.");
+                System.out.println("\u001B[31mInvalid input. Please enter a number.\u001B[0m");
                 scanner.next(); // Consume invalid input
-                System.out.print("Choose an option: ");
+                System.out.print("\u001B[36mChoose an option: \u001B[0m");
             }
             choice = scanner.nextInt();
             scanner.nextLine(); // Consume the newline character after nextInt()
@@ -87,19 +88,19 @@ public class SteganographyMenu {
                     hideMessageInImage(scanner);
                     break;
                 case 2:
-                    System.out.println("Hide in a Text: Feature coming soon!\n");
+                    System.out.println("\u001B[36mHide in a Text: Feature coming soon!\n\u001B[0m");
                     break;
                 case 3:
-                    System.out.println("Hide in a music: Feature coming soon!\n");
+                    System.out.println("\u001B[36mHide in a music: Feature coming soon!\n\u001B[0m");
                     break;
                 case 4:
-                    System.out.println("Hide in a video: Feature coming soon!\n");
+                    System.out.println("\u001B[36mHide in a video: Feature coming soon!\n\u001B[0m");
                     break;
                 case 0:
-                    System.out.println("Going back...\n");
+                    System.out.println("\u001B[36mGoing back...\n\u001B[0m");
                     break;
                 default:
-                    System.out.println("Invalid choice. Please try again.\n");
+                    System.out.println("\u001B[31mInvalid choice. Please try again.\n\u001B[0m");
             }
 
         } while (choice != 0);
@@ -109,21 +110,21 @@ public class SteganographyMenu {
      * Handle the action for reading a hidden message from an image
      */
     private static void handleReadMessage(Scanner scanner) {
-        System.out.print("Enter the path of the image to read the hidden message from: ");
+        System.out.print("\u001B[36mEnter the path of the image to read the hidden message from: \u001B[0m");
         String imagePath = scanner.nextLine();
 
         // Check if the file exists
         File imageFile = new File(imagePath);
         if (!imageFile.exists() || !imageFile.isFile()) {
-            System.out.println("Error: The file does not exist or is not a valid file.");
+            System.out.println("\u001B[31mError: The file does not exist or is not a valid file.\u001B[0m");
             return;
         }
 
         try {
             String message = Steganography.retrieveTextFromImage(imagePath);
-            System.out.println("Hidden Message: " + message);
+            System.out.println("\u001B[36mHidden Message: \u001B[0m" + message);
         } catch (IOException e) {
-            System.out.println("Error reading message from image: " + e.getMessage());
+            System.out.println("\u001B[31mError reading message from image: \u001B[0m" + e.getMessage());
         }
     }
 
@@ -131,17 +132,17 @@ public class SteganographyMenu {
      * Hide a message in an image
      */
     private static void hideMessageInImage(Scanner scanner) {
-        System.out.print("Enter the path of the image to hide the message in: ");
+        System.out.print("\u001B[36mEnter the path of the image to hide the message in: \u001B[0m");
         String inputImagePath = scanner.nextLine();
 
         // Check if the input image exists
         File inputFile = new File(inputImagePath);
         if (!inputFile.exists() || !inputFile.isFile()) {
-            System.out.println("Error: The input image does not exist or is not a valid file.");
+            System.out.println("\u001B[31mError: The input image does not exist or is not a valid file.\u001B[0m");
             return;
         }
 
-        System.out.print("Enter the path to save the image with the hidden message: ");
+        System.out.print("\u001B[36mEnter the path to save the image with the hidden message: \u001B[0m");
         String outputImagePath = scanner.nextLine();
 
         // Check if the output path has a valid extension
@@ -155,18 +156,18 @@ public class SteganographyMenu {
         File outputFile = new File(outputImagePath);
         File parentDir = outputFile.getParentFile();
         if (parentDir != null && !parentDir.exists()) {
-            System.out.println("Error: The output directory does not exist.");
+            System.out.println("\u001B[31mError: The output directory does not exist.\u001B[0m");
             return;
         }
 
-        System.out.print("Enter the message to hide: ");
+        System.out.print("\u001B[36mEnter the message to hide: \u001B[0m");
         String message = scanner.nextLine();
 
         try {
             Steganography.hideTextInImage(inputImagePath, outputImagePath, message);
-            System.out.println("Message successfully hidden in the image. Saved to: " + outputImagePath);
+            System.out.println("\u001B[36mMessage successfully hidden in the image. Saved to: \u001B[0m" + outputImagePath);
         } catch (IOException e) {
-            System.out.println("Error hiding message in image: " + e.getMessage());
+            System.out.println("\u001B[31mError hiding message in image: \u001B[0m" + e.getMessage());
         }
     }
 }
