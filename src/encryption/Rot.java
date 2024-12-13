@@ -23,9 +23,9 @@ public class Rot {
                 // check if the letter is a letter
                 if (Character.isLetter(c)) {
                     if (Character.isLowerCase(c)) {
-                        result.append((char) (97 + (c - 97 + rot) % 26));
+                        result.append((char) (97 + (c - 97 + rot + 26) % 26));
                     } else {
-                        result.append((char) (65 + (c - 65 + rot) % 26));
+                        result.append((char) (65 + (c - 65 + rot + 26) % 26));
                     }
                 } else {
                     // if it is not a letter, display the word with an error message
