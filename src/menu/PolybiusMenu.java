@@ -21,8 +21,8 @@ public class PolybiusMenu {
         Common.printTitle("POLYBIUS MENU", "Welcome to the POLYBIUS encryption Menu!");
 
         // Inform the user about the encryption behavior
-        System.out.println("Note: Only letters will be encrypted. Spaces, numbers, and special characters will be removed.");
-        System.out.println("The text will also be converted to uppercase before encryption.\n");
+        System.out.println("\u001B[36mNote: Only letters will be encrypted. Spaces, numbers, and special characters will be removed.\u001B[0m");
+        System.out.println("\u001B[36mThe text will also be converted to uppercase before encryption.\n\u001B[0m");
 
         // Ask the name of the service
         String service = Common.getServiceName();
@@ -32,12 +32,12 @@ public class PolybiusMenu {
 
         // Generate and display the Polybius grid
         char[][] grid = Polybius.generatePolybiusGrid();
-        System.out.println("Polybius Grid:");
+        System.out.println("\u001B[36mPolybius Grid:\u001B[0m");
         displayGrid(grid);
 
         // Encrypt the password using Polybius
         String encryptedPassword = Polybius.encrypt(password, grid);
-        System.out.println("Encrypted Password: " + encryptedPassword);
+        System.out.println("\u001B[36mEncrypted Password: \u001B[0m" + encryptedPassword);
 
         //Retrieve AES Key
         SecretKey aesKey = AesKeyManager.loadOrGenerateKey();

@@ -33,11 +33,11 @@ public class RotationMenu {
 
 
         // Display the service and key
-        System.out.println("Encrypting password for service: " + service + " using key: " + rot);
+        System.out.println("\u001B[36mEncrypting password for service: \u001B[0m" + service + " \u001B[36musing key: \u001B[0m" + rot);
 
         // Encrypt the password
         String encryptedPassword = Rot.encryptRot(password, rot);
-        System.out.println("Encrypted password: " + encryptedPassword);
+        System.out.println("\u001B[36mEncrypted password: \u001B[0m" + encryptedPassword);
 
         //Retrieve AES Key
         SecretKey aesKey = AesKeyManager.loadOrGenerateKey();
@@ -56,7 +56,7 @@ public class RotationMenu {
         Scanner scanner = new Scanner(System.in);
         // Ask the user for the password
         while (true) {
-            System.out.print("Enter the password: ");
+            System.out.print("\u001B[36mEnter the password: \u001B[0m");
             String password = scanner.nextLine();
             // Remove spaces from the password
             password = password.replaceAll(" ", "");
@@ -66,10 +66,10 @@ public class RotationMenu {
                 if(password.equals(password.toLowerCase()) || password.equals(password.toUpperCase())){
                     return password;
                 } else {
-                    System.out.println("Please enter a valid password (upper or lower case).");
+                    System.out.println("\u001B[31mPlease enter a valid password (upper or lower case).\u001B[0m");
                 }
             } else {
-                System.out.println("Please enter a valid password (alphabet characters only).");
+                System.out.println("\u001B[31mPlease enter a valid password (alphabet characters only).\u001B[0m");
             }
         }
     }
@@ -84,13 +84,13 @@ public class RotationMenu {
         Scanner scanner = new Scanner(System.in);
         // Ask the user for the key
         while (true) {
-            System.out.print("Enter the key: ");
+            System.out.print("\u001B[36mEnter the key: \u001B[0m");
             String key = scanner.nextLine();
             // Validate the key limit to alphabet characters only
             if (!key.isEmpty() && key.matches("^-?(?:[1-9]|1[0-9]|2[0-5])$")) {
                 return Integer.parseInt(key);
             } else {
-                System.out.println("Please enter a valid key (only a number between 1 and 25 or -1 and -25).");
+                System.out.println("\u001B[31mPlease enter a valid key (only a number between 1 and 25 or -1 and -25).\u001B[0m");
             }
         }
     }
