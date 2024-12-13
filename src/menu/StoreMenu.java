@@ -94,7 +94,7 @@ public class StoreMenu {
      */
     private static void displaySingleEncryptionsOptions() {
         // Add a title for this menu
-        printEncryptionTitle();
+        Common.printTitle("ENCRYPTION METHODS", "Welcome to the Encryption Methods Menu!");
 
         System.out.println("\u001B[1;36mPlease select one of the following encryption methods:\u001B[0m");
         System.out.println("\u001B[1;36m1.\u001B[0m Rotation (Ceasar)");
@@ -104,15 +104,6 @@ public class StoreMenu {
         System.out.println("\u001B[1;36m5.\u001B[0m Enigma");
         System.out.println("\u001B[1;36m6.\u001B[0m AES");
         System.out.println("\u001B[1;31m0.\u001B[0m Return to main menu");
-    }
-
-    /**
-     * Print the encryption menu title
-     */
-    private static void printEncryptionTitle() {
-        System.out.println("\u001B[1;34m==================== ENCRYPTION METHODS ====================\u001B[0m");
-        System.out.println("\u001B[1;32m        Welcome to the Encryption Methods Menu!            \u001B[0m");
-        System.out.println("\u001B[1;34m============================================================\u001B[0m");
     }
 
     /**
@@ -127,9 +118,7 @@ public class StoreMenu {
     }
 
     private static void printTitleAndStoreOptions() {
-        System.out.println("\u001B[1;34m==================== STORE MENU ====================\u001B[0m");
-        System.out.println("\u001B[1;32m        Welcome to the Password Store Menu!         \u001B[0m");
-        System.out.println("\u001B[1;34m====================================================\u001B[0m");
+        Common.printTitle("STORE MENU", "Welcome to the Password Store Menu!");
         printStoreOptions();
     }
 }

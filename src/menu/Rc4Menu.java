@@ -13,7 +13,8 @@ public class Rc4Menu {
      * Display RC4 menu
      */
     public static void RC4() throws Exception {
-        System.out.println("--- RC4 Encryption ---\n");
+        Common.printTitle("RC4 MENU", "Welcome to the RC4 encryption Menu!");
+
 
         // Ask the name of the service
         String service = Common.getServiceName();

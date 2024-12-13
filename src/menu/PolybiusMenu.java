@@ -17,7 +17,8 @@ public class PolybiusMenu {
      * Display the Polybius menu
      */
     public static void polybius() throws Exception {
-        System.out.println("--- POLYBIUS Encryption ---\n");
+
+        Common.printTitle("POLYBIUS MENU", "Welcome to the POLYBIUS encryption Menu!");
 
         // Inform the user about the encryption behavior
         System.out.println("Note: Only letters will be encrypted. Spaces, numbers, and special characters will be removed.");

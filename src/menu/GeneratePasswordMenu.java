@@ -1,5 +1,7 @@
 package menu;
 
+import utils.Common;
+
 import java.util.Scanner;
 
 public class GeneratePasswordMenu {
@@ -7,6 +9,8 @@ public class GeneratePasswordMenu {
      * Generate password menu
      */
     public static void generatePassword() {
+        Common.printTitle("GENERATE PASSWORD MENU", "Welcome to the GENERATE PASSWORD Menu!");
+
         Scanner scanner = new Scanner(System.in);
         String seed;
         while(true){

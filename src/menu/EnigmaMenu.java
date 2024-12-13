@@ -16,7 +16,8 @@ public class EnigmaMenu {
         Common.clearScreen();
 
         // Display menu title
-        printEnigmaTitle();
+        Common.printTitle("ENIGMA MENU", "Welcome to the ENIGMA encryption Menu!");
+
 
         // Ask the name of the service
         String service = Common.getServiceName();
@@ -81,14 +82,5 @@ public class EnigmaMenu {
                 System.out.println("\u001B[31mError: Invalid input. Please enter a valid integer.\u001B[0m");
             }
         }
-    }
-
-    /**
-     * Print the ENIGMA menu title
-     */
-    private static void printEnigmaTitle() {
-        System.out.println("\u001B[1;34m==================== ENIGMA ENCRYPTION ====================\u001B[0m");
-        System.out.println("\u001B[1;32m        Welcome to the ENIGMA Encryption Menu!             \u001B[0m");
-        System.out.println("\u001B[1;34m==========================================================\u001B[0m");
     }
 }

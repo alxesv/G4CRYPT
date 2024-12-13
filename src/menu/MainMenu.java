@@ -94,9 +94,7 @@ public class MainMenu {
      * Print the title and options available to the user
      */
     private static void printTitleAndOptions() {
-        System.out.println("\u001B[1;34m==================== MAIN MENU ====================\u001B[0m");
-        System.out.println("\u001B[1;32m            Welcome to the Secure App!              \u001B[0m");
-        System.out.println("\u001B[1;34m====================================================\u001B[0m");
+        Common.printTitle("MAIN MENU", "Welcome to the Secure App!");
         printOptions();
     }
 

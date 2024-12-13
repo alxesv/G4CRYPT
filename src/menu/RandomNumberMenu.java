@@ -1,5 +1,6 @@
 package menu;
 
+import utils.Common;
 import utils.Lfsr;
 
 import java.math.BigInteger;
@@ -10,6 +11,8 @@ public class RandomNumberMenu {
      * Display the random number menu
      */
     public static void randomNumber() {
+        Common.printTitle("RANDOM NUMBER MENU", "Welcome to the RANDOM NUMBER Menu!");
+
         boolean lfsrMenuRunning = true;
         Scanner scanner = new Scanner(System.in);
 
