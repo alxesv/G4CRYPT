@@ -15,7 +15,7 @@ public class MainMenu {
      */
     public static void mainMenu() throws Exception {
         Scanner scanner = new Scanner(System.in);
-        int[] validChoices = {1, 2, 3, 4, 5, 0};
+        int[] validChoices = {1, 2, 3, 4, 5, 6, 0};
         boolean running = true;
 
         while (running) {

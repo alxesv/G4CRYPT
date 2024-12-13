@@ -50,7 +50,6 @@ public class SteganographyMenu {
 
         } while (choice != 0);
 
-        scanner.close();
     }
 
     /**
