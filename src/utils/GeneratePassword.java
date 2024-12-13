@@ -37,6 +37,9 @@ public class GeneratePassword {
      */
     private static double generateDouble(String seed, int iter){
         String randomNumberString1 = Lfsr.run(seed, iter, java.util.Optional.empty()).toString();
+        if(randomNumberString1.length() < 2){
+            randomNumberString1 = "0" + randomNumberString1;
+        }
         String doubleString1 = "0." + randomNumberString1.substring(randomNumberString1.length() - 2);
         return Double.parseDouble(doubleString1);
     }
