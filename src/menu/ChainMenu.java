@@ -28,19 +28,24 @@ public class ChainMenu {
         int minChainLength = 2; // Minimum chain length
 
         while (selectedMethods.size() < maxChainLength) {
-            System.out.println("\n--- Chain Encryption Menu ---");
-            System.out.println("Select between " + minChainLength + " and " + maxChainLength + " encryption methods for the chain.");
-            System.out.println("Selected methods: " + (selectedMethods.isEmpty() ? "None" : selectedMethods));
-            System.out.println("Available options:");
+            Common.clearScreen();
+
+            // Display the chain encryption menu with title
+            System.out.print("\n");
+            printChainMenuTitle();
+
+            System.out.println("\u001B[36mSelect between " + minChainLength + " and " + maxChainLength + " encryption methods for the chain.  \u001B[0m");
+            System.out.println("\u001B[36mSelected methods: \u001B[0m" + (selectedMethods.isEmpty() ? "None" : selectedMethods));
+            System.out.println("\n"+"\u001B[36mAvailable options:  \u001B[0m");
 
             // Display available options
             for (int i = 0; i < availableOptions.length; i++) {
                 if (!selectedMethods.contains(availableOptions[i])) {
-                    System.out.println((i + 1) + ". " + availableOptions[i]);
+                    System.out.println("\u001B[36m"+(i + 1) + ".   \u001B[0m" + availableOptions[i]);
                 }
             }
 
-            System.out.print("\nEnter your choice (1-" + availableOptions.length + ", or 0 to finish): ");
+            System.out.print("\u001B[36mEnter your choice (1-" + availableOptions.length + ", or 0 to finish):  \u001B[0m");
 
             int choice;
             // Check if input is an integer and within the valid range
@@ -52,21 +57,21 @@ public class ChainMenu {
                         break;
                     }
                 }
-                System.out.println("Invalid choice. Please select a valid option or 0 to finish.");
+                System.out.print("\u001B[31mInvalid choice.\u001B[0m \u001B[36mPlease select a valid option or 0 to finish: \u001B[0m");
                 scanner.nextLine();
             }
 
             // Handle exit case
             if (choice == 0) {
                 if (selectedMethods.size() < minChainLength) {
-                    System.out.println("You must select at least " + minChainLength + " methods. Continue selecting.");
+                    System.out.print("\u001B[33mYou must select at least " + minChainLength + " methods. Continue selecting.\u001B[0m ");
                 } else {
                     break;
                 }
             } else {
                 // Add the selected method to the chain
                 selectedMethods.add(availableOptions[choice - 1]);
-                System.out.println(availableOptions[choice - 1] + " added to the chain.");
+                System.out.println("\u001B[1;32m"+availableOptions[choice - 1] + " added to the chain. \u001B[0m");
             }
         }
 
@@ -75,12 +80,19 @@ public class ChainMenu {
         handleSelectedChain(orderedMethods);
     }
 
+    private static void printChainMenuTitle() {
+        // Display title and separator for the Chain Encryption menu
+        System.out.println("\u001B[1;34m==================== CHAIN ENCRYPTION MENU ====================\u001B[0m");
+        System.out.println("\u001B[1;32m   Welcome to the Chain Encryption Method Selection!         \u001B[0m");
+        System.out.println("\u001B[1;34m==============================================================\u001B[0m");
+    }
+
     private static void handleSelectedChain(List<String> selectedMethods) throws Exception {
         // Store the method variables for each encryption method
         StringBuilder methodVariables = new StringBuilder();
         Scanner scanner = new Scanner(System.in);
         // Handle the selected chain of encryption methods
-        System.out.println("Selected chain: " + selectedMethods);
+        System.out.println("\u001B[36mSelected chain: \u001B[0m" + selectedMethods);
 
         // Ask name of the service
         String service = Common.getServiceName();
@@ -146,7 +158,7 @@ public class ChainMenu {
                     methodVariables.append("POLYBIUS").append(">").append(gridString).append(";");
                     break;
                 default:
-                    System.out.println("Invalid method: " + method);
+                    System.out.println("\u001B[31mInvalid method: \u001B[0m" + method);
             }
         }
         // Call the chain encryption method
@@ -161,58 +173,24 @@ public class ChainMenu {
     private static String handlePasswordSelection(List<String> selectedMethods){
         Scanner scanner = new Scanner(System.in);
         if(
-            selectedMethods.contains("ROT") ||
-            selectedMethods.contains("VIGENERE") ||
-            selectedMethods.contains("ENIGMA") ||
-            selectedMethods.contains("POLYBIUS")
+                selectedMethods.contains("ROT") ||
+                        selectedMethods.contains("VIGENERE") ||
+                        selectedMethods.contains("ENIGMA") ||
+                        selectedMethods.contains("RC4") ||
+                        selectedMethods.contains("AES") ||
+                        selectedMethods.contains("POLYBIUS")
         ){
-            // Limit to alphabet characters only for ROT, Vigenere, Enigma, and Polybius
-            while (true) {
-                System.out.print("Enter the password: ");
-                String password = scanner.nextLine();
-                // Validate the password limit to alphabet characters only
-                if (!password.isEmpty() && password.matches("[a-zA-Z]+")) {
-                    // Remove all non-alphabetic characters and convert to lowercase
-                    return password.replaceAll("[^a-zA-Z]", "").toLowerCase();
-                } else {
-                    System.out.println("Please enter a valid password (alphanumeric characters only).");
-                }
-            }
+            System.out.print("\u001B[36mEnter the password for encryption: \u001B[0m");
+            return scanner.nextLine();
         } else {
-            // Allow any characters
-            while (true) {
-                System.out.print("Enter the password: ");
-                String password = scanner.nextLine();
-                // Validate the password
-                if (!password.isEmpty()) {
-                    return password;
-                } else {
-                    System.out.println("Please enter a valid password.");
-                }
-            }
+            return "\u001B[31mNo password\u001B[0m";
         }
     }
 
-    /**
-     * Reorder the selected methods to ensure AES, RC4 and Polybius are at the end of the chain
-     * because the other algorithms can't use special characters in the password.
-     * @param selectedMethods the selected methods
-     * @return the reordered methods
-     */
-    private static List<String> reorderSelectedMethods(List<String> selectedMethods){
-        List<String> reorderedMethods = new ArrayList<>(selectedMethods);
-        boolean polybius = reorderedMethods.remove("POLYBIUS");
-        boolean rc4 = reorderedMethods.remove("RC4");
-        boolean aes = reorderedMethods.remove("AES");
-        if(polybius){
-            reorderedMethods.add("POLYBIUS");
-        }
-        if(rc4){
-            reorderedMethods.add("RC4");
-        }
-        if(aes){
-            reorderedMethods.add("AES");
-        }
-        return reorderedMethods;
+    private static List<String> reorderSelectedMethods(List<String> selectedMethods) {
+        // Reorder selected methods to a fixed sequence based on priority
+        List<String> orderedMethods = new ArrayList<>();
+        orderedMethods.addAll(selectedMethods);
+        return orderedMethods;
     }
 }

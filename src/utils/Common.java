@@ -6,15 +6,27 @@ import java.util.Scanner;
  * Common utility functions
  */
 public class Common {
+    // Méthode pour effacer la console
+    public static void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
+
+    // Méthode pour attendre une entrée de l'utilisateur avant de continuer
+    public static void promptToContinue(Scanner scanner) {
+        System.out.println("\nPress Enter to continue...");
+        scanner.nextLine();
+    }
+
     /**
      * Function to get the name of the service from the user
      */
     public static String getServiceName() {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter the name of the service: ");
+        System.out.print("\u001B[36mEnter the name of the service: \u001B[0m");
         while (!scanner.hasNext("^[a-zA-Z0-9]+$")) {
-            System.out.println("Please enter a valid service name (alphanumeric characters only)");
-            System.out.print("Enter the name of the service: ");
+            System.out.println("\u001B[31mPlease enter a valid service name (alphanumeric characters only).\u001B[0m");
+            System.out.print("\u001B[36mEnter the name of the service: \u001B[0m");
             scanner.next();
         }
         return scanner.next();
