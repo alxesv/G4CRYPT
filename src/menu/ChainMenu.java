@@ -38,12 +38,12 @@ public class ChainMenu {
 
             System.out.println("\u001B[36mSelect between " + minChainLength + " and " + maxChainLength + " encryption methods for the chain.  \u001B[0m");
             System.out.println("\u001B[36mSelected methods: \u001B[0m" + (selectedMethods.isEmpty() ? "None" : selectedMethods));
-            System.out.println("\n"+"\u001B[36mAvailable options:  \u001B[0m");
+            System.out.println("\n" + "\u001B[36mAvailable options:  \u001B[0m");
 
             // Display available options
             for (int i = 0; i < availableOptions.length; i++) {
                 if (!selectedMethods.contains(availableOptions[i])) {
-                    System.out.println("\u001B[36m"+(i + 1) + ".   \u001B[0m" + availableOptions[i]);
+                    System.out.println("\u001B[36m" + (i + 1) + ".   \u001B[0m" + availableOptions[i]);
                 }
             }
 
@@ -73,7 +73,7 @@ public class ChainMenu {
             } else {
                 // Add the selected method to the chain
                 selectedMethods.add(availableOptions[choice - 1]);
-                System.out.println("\u001B[1;32m"+availableOptions[choice - 1] + " added to the chain. \u001B[0m");
+                System.out.println("\u001B[1;32m" + availableOptions[choice - 1] + " added to the chain. \u001B[0m");
             }
         }
 
@@ -165,16 +165,16 @@ public class ChainMenu {
         SaveData.saveData(service, encryptedPassword, "CHAIN", methodVariables.toString(), aesKey);
     }
 
-    private static String handlePasswordSelection(List<String> selectedMethods){
+    private static String handlePasswordSelection(List<String> selectedMethods) {
         Scanner scanner = new Scanner(System.in);
-        if(
+        if (
                 selectedMethods.contains("ROT") ||
                         selectedMethods.contains("VIGENERE") ||
                         selectedMethods.contains("ENIGMA") ||
                         selectedMethods.contains("RC4") ||
                         selectedMethods.contains("AES") ||
                         selectedMethods.contains("POLYBIUS")
-        ){
+        ) {
             System.out.print("\u001B[36mEnter the password for encryption: \u001B[0m");
             return scanner.nextLine();
         } else {
@@ -185,22 +185,24 @@ public class ChainMenu {
     /**
      * Reorder the selected methods to ensure AES, RC4 and Polybius are at the end of the chain
      * because the other algorithms can't use special characters in the password.
+     *
      * @param selectedMethods the selected methods
      * @return the reordered methods
      */
-    private static List<String> reorderSelectedMethods(List<String> selectedMethods){
+    private static List<String> reorderSelectedMethods(List<String> selectedMethods) {
         List<String> reorderedMethods = new ArrayList<>(selectedMethods);
         boolean polybius = reorderedMethods.remove("POLYBIUS");
         boolean rc4 = reorderedMethods.remove("RC4");
         boolean aes = reorderedMethods.remove("AES");
-        if(polybius){
+        if (polybius) {
             reorderedMethods.add("POLYBIUS");
         }
-        if(rc4){
+        if (rc4) {
             reorderedMethods.add("RC4");
         }
-        if(aes){
+        if (aes) {
             reorderedMethods.add("AES");
         }
         return reorderedMethods;
+    }
 }
