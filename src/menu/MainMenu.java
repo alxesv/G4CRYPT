@@ -65,6 +65,10 @@ public class MainMenu {
                       // Display help menu
                       HelpMenu.help();
                       break;
+                  case 7:
+                    DeleteMenu.delete();
+                    break;
+
                   case 0:
                       System.out.println("Exiting");
                       // Exit the loop
