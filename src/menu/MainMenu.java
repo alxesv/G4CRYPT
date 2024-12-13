@@ -102,7 +102,7 @@ public class MainMenu {
     }
 
     private static void printOptions() {
-        System.out.println("\n\u001B[1;36m1.\u001B[0m Store password");
+        System.out.println("\u001B[1;36m1.\u001B[0m Store password");
         System.out.println("\u001B[1;36m2.\u001B[0m Retrieve password");
         System.out.println("\u001B[1;36m3.\u001B[0m Hash password");
         System.out.println("\u001B[1;36m4.\u001B[0m Generate secure password");

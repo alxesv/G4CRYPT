@@ -110,7 +110,7 @@ public class StoreMenu {
      * Print the store options available to the user
      */
     private static void printStoreOptions(){
-        System.out.println("\n\u001B[1;34m--- Store Password ---\u001B[0m");
+        System.out.println("\u001B[1;34m--- Store Password ---\u001B[0m");
         System.out.println("\u001B[1;36mPlease select one of the following options:\u001B[0m");
         System.out.println("\u001B[1;36m1.\u001B[0m Use a single encryption method");
         System.out.println("\u001B[1;36m2.\u001B[0m Use a chain of encryption methods");
