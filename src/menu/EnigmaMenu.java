@@ -13,41 +13,44 @@ public class EnigmaMenu {
      * Display the ENIGMA menu
      */
     public static void enigma() throws Exception {
-        System.out.println("--- ENIGMA Encryption ---\n");
+        Common.clearScreen();
+
+        // Display menu title
+        printEnigmaTitle();
 
         // Ask the name of the service
         String service = Common.getServiceName();
 
         // Ask the password to encrypt
-        String password = getPassword();
+        String password = Common.getAlphabetCharactersOnly();
 
         Scanner scanner = new Scanner(System.in);
         int rotor1, rotor2, rotor3;
 
-        System.out.print("Do you want to choose the rotor positions? (yes/no): ");
+        System.out.print("\u001B[36mDo you want to choose the rotor positions? (yes/no): \u001B[0m");
         String choice = scanner.nextLine().trim().toLowerCase();
 
         if (choice.equals("yes") || choice.equals("y")) {
             // Let the user input rotor positions
-            rotor1 = getPositiveInt(scanner, "Enter position for rotor 1 (0-25): ");
-            rotor2 = getPositiveInt(scanner, "Enter position for rotor 2 (0-25): ");
-            rotor3 = getPositiveInt(scanner, "Enter position for rotor 3 (0-25): ");
+            rotor1 = getPositiveInt(scanner, "\u001B[36mEnter position for rotor 1 (0-25): \u001B[0m");
+            rotor2 = getPositiveInt(scanner, "\u001B[36mEnter position for rotor 2 (0-25): \u001B[0m");
+            rotor3 = getPositiveInt(scanner, "\u001B[36mEnter position for rotor 3 (0-25): \u001B[0m");
         } else {
             // Generate random rotor positions
             rotor1 = new java.util.Random().nextInt(26);
             rotor2 = new java.util.Random().nextInt(26);
             rotor3 = new java.util.Random().nextInt(26);
 
-            System.out.println("Random rotor positions selected: Rotor 1: " + rotor1 + ", Rotor 2: " + rotor2 + ", Rotor 3: " + rotor3);
+            System.out.println("\u001B[33mRandom rotor positions selected:\u001B[0m Rotor 1: " + rotor1 + ", Rotor 2: " + rotor2 + ", Rotor 3: " + rotor3);
         }
 
         // Create Enigma instance and encrypt password
         Enigma enigma = new Enigma(rotor1, rotor2, rotor3);
         String encryptedPassword = enigma.encrypt(password);
 
-        System.out.println("Encrypted Password: " + encryptedPassword);
+        System.out.println("\u001B[32mEncrypted Password:\u001B[0m " + encryptedPassword);
 
-        //Retrieve AES Key
+        // Retrieve AES Key
         SecretKey aesKey = AesKeyManager.loadOrGenerateKey();
 
         // Save the encrypted password and rotor positions
@@ -69,33 +72,23 @@ public class EnigmaMenu {
             System.out.print(prompt);
             try {
                 value = Integer.parseInt(scanner.nextLine());
-                if (value >= 0) {
+                if (value >= 0 && value <= 25) {
                     return value;
                 } else {
-                    System.out.println("Error: Please enter a positive number");
+                    System.out.println("\u001B[31mError: Please enter a number between 0 and 25.\u001B[0m");
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Error: Invalid input. Please enter a positive integer.");
+                System.out.println("\u001B[31mError: Invalid input. Please enter a valid integer.\u001B[0m");
             }
         }
     }
 
     /**
-     * Get the password from the user
-     * @return the password
+     * Print the ENIGMA menu title
      */
-    private static String getPassword() {
-        Scanner scanner = new Scanner(System.in);
-        // Ask the user for the password
-        while (true) {
-            System.out.print("Enter the password: ");
-            String password = scanner.nextLine();
-            // Validate the password
-            if (!password.isEmpty()) {
-                return password;
-            } else {
-                System.out.println("Please enter a valid password.");
-            }
-        }
+    private static void printEnigmaTitle() {
+        System.out.println("\u001B[1;34m==================== ENIGMA ENCRYPTION ====================\u001B[0m");
+        System.out.println("\u001B[1;32m        Welcome to the ENIGMA Encryption Menu!             \u001B[0m");
+        System.out.println("\u001B[1;34m==========================================================\u001B[0m");
     }
 }

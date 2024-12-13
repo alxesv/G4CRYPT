@@ -10,29 +10,36 @@ import java.util.Base64;
 import java.util.Scanner;
 
 public class AesMenu {
+
     /**
      * Display the AES menu
      */
     public static void aes() throws Exception {
-        System.out.println("--- AES Encryption ---\n");
+        Common.clearScreen();
+
+        // Print the title and menu header
+        Common.printTitle("AES MENU", "Welcome to the AES encryption Menu!");
 
         // Ask the name of the service
         String service = Common.getServiceName();
+
         // Ask the password to encrypt
         String password = getPassword();
+
         // Generate the secret key
         SecretKey secretKey = Aes.generateKey();
 
-        // Display the service
-        System.out.println("Encrypting password for service: " + service);
+        // Display the service being encrypted
+        System.out.println("\u001B[34mEncrypting password for service: \u001B[0m" + service);
 
         // Encrypt the password
         String encryptedPassword = Aes.encrypt(password, secretKey);
-        System.out.println("Encrypted password: " + encryptedPassword);
+        System.out.println("\u001B[34mEncrypted password: \u001B[0m" + encryptedPassword);
 
-        //Retrieve AES Key
+        // Retrieve or generate the AES key
         SecretKey aesKey = AesKeyManager.loadOrGenerateKey();
 
+        // Encode the secret key for saving
         String encodedSecretKey = Base64.getEncoder().encodeToString(secretKey.getEncoded());
 
         // Save the encrypted password and the encoded secret key
@@ -41,19 +48,21 @@ public class AesMenu {
 
     /**
      * Get the password from the user
+     *
      * @return the password
      */
     private static String getPassword() {
         Scanner scanner = new Scanner(System.in);
-        // Ask the user for the password
+
         while (true) {
-            System.out.print("Enter the password: ");
+            System.out.print("\u001B[36mEnter the password: \u001B[0m"); // User input prompt
             String password = scanner.nextLine();
+
             // Validate the password
             if (!password.isEmpty()) {
                 return password;
             } else {
-                System.out.println("Please enter a valid password.");
+                System.out.println("\u001B[31mPlease enter a valid password.\u001B[0m"); // Error message
             }
         }
     }

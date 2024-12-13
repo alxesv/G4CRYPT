@@ -36,7 +36,7 @@ public class SaveData {
 
                 // Ajouter la ligne chiffrée au fichier
                 writer.write(encryptedData + "\n");
-                System.out.println("Data saved successfully (Encrypted)");
+                System.out.println("\u001B[33mData successfully saved!\u001B[0m");
             }
         } catch (Exception e) {
             e.printStackTrace();

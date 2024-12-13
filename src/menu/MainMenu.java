@@ -30,7 +30,6 @@ public class MainMenu {
 
                 if (isEasterEgg(userInput)) {
                     EasterEggMenu.displaySecretMessage();
-                    break; // Sortir de la boucle après avoir activé l'Easter Egg
                 } else if (isInteger(userInput)) {
                     choice = Integer.parseInt(userInput);  // Récupérer le choix valide
                     break; // Sortir de la boucle si un choix valide est donné
