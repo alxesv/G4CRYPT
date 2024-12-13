@@ -27,7 +27,7 @@ public class PolybiusMenu {
         String service = Common.getServiceName();
 
         // Ask the password to encrypt
-        String password = getPassword();
+        String password = Common.getAlphabetCharactersOnly();
 
         // Generate and display the Polybius grid
         char[][] grid = Polybius.generatePolybiusGrid();
@@ -44,25 +44,6 @@ public class PolybiusMenu {
         // Save the encrypted data
         String gridAsString = Polybius.gridToString(grid);
         SaveData.saveData(service, encryptedPassword, "POLYBIUS", gridAsString, aesKey);
-    }
-
-    /**
-     * Get the password from the user
-     * @return the password
-     */
-    private static String getPassword() {
-        Scanner scanner = new Scanner(System.in);
-        // Ask the user for the password
-        while (true) {
-            System.out.print("Enter the password: ");
-            String password = scanner.nextLine();
-            // Validate the password
-            if (!password.isEmpty()) {
-                return password;
-            } else {
-                System.out.println("Please enter a valid password.");
-            }
-        }
     }
 
     /**

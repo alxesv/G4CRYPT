@@ -19,7 +19,7 @@ public class EnigmaMenu {
         String service = Common.getServiceName();
 
         // Ask the password to encrypt
-        String password = getPassword();
+        String password = Common.getAlphabetCharactersOnly();
 
         Scanner scanner = new Scanner(System.in);
         int rotor1, rotor2, rotor3;
@@ -76,25 +76,6 @@ public class EnigmaMenu {
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Error: Invalid input. Please enter a positive integer.");
-            }
-        }
-    }
-
-    /**
-     * Get the password from the user
-     * @return the password
-     */
-    private static String getPassword() {
-        Scanner scanner = new Scanner(System.in);
-        // Ask the user for the password
-        while (true) {
-            System.out.print("Enter the password: ");
-            String password = scanner.nextLine();
-            // Validate the password
-            if (!password.isEmpty()) {
-                return password;
-            } else {
-                System.out.println("Please enter a valid password.");
             }
         }
     }
