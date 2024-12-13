@@ -18,10 +18,10 @@ public class VigenereMenu {
         String service = Common.getServiceName();
         // Ask the password to encrypt
         System.out.print("Enter the password: ");
-        String password = getAlphabetCharactersOnly();
+        String password = Common.getAlphabetCharactersOnly();
         // Ask the key to encrypt the password
         System.out.print("Enter the key: ");
-        String key = getAlphabetCharactersOnly();
+        String key = Common.getAlphabetCharactersOnly();
 
         // Display the service and key
         System.out.println("Encrypting password for service: " + service + " using key: " + key);
@@ -35,24 +35,6 @@ public class VigenereMenu {
 
         // Save the encrypted password and the key
         SaveData.saveData(service, encryptedPassword, "VIGENERE", key, aesKey);
-    }
-
-    /**
-     * Get the Vigenere key from the user
-     * @return the Vigenere key
-     */
-    public static String getAlphabetCharactersOnly() {
-        Scanner scanner = new Scanner(System.in);
-        // Ask the user for the key
-        while (true) {
-            String key = scanner.nextLine();
-            // Validate the key limit to alphabet characters only
-            if (!key.isEmpty() && key.matches("^[a-zA-Z]+$")) {
-                return key.toLowerCase();
-            } else {
-                System.out.println("Please enter a valid entry (alphabet characters only).");
-            }
-        }
     }
 
 }
