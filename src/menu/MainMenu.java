@@ -31,8 +31,8 @@ public class MainMenu {
                 if (isEasterEgg(userInput)) {
                     EasterEggMenu.displaySecretMessage();
                 } else if (isInteger(userInput)) {
-                    choice = Integer.parseInt(userInput);  // Récupérer le choix valide
-                    break; // Sortir de la boucle si un choix valide est donné
+                    choice = Integer.parseInt(userInput);
+                    break;
                 } else {
                     System.out.println("\u001B[31mPlease enter a valid choice or the Easter Egg:\u001B[0m");
                     printOptions();
@@ -108,7 +108,7 @@ public class MainMenu {
         System.out.println("\u001B[1;36m4.\u001B[0m Generate secure password");
         System.out.println("\u001B[1;36m5.\u001B[0m Generate random numbers");
         System.out.println("\u001B[1;36m6.\u001B[0m Steganography");
-        System.out.println("\u001B[1;36m6.\u001B[0m Help - How to use the application");
+        System.out.println("\u001B[1;36m7.\u001B[0m Help - How to use the application");
         System.out.println("\u001B[1;31m0.\u001B[0m Exit");
     }
 

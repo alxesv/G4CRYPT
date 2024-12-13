@@ -182,10 +182,25 @@ public class ChainMenu {
         }
     }
 
-    private static List<String> reorderSelectedMethods(List<String> selectedMethods) {
-        // Reorder selected methods to a fixed sequence based on priority
-        List<String> orderedMethods = new ArrayList<>();
-        orderedMethods.addAll(selectedMethods);
-        return orderedMethods;
-    }
+    /**
+     * Reorder the selected methods to ensure AES, RC4 and Polybius are at the end of the chain
+     * because the other algorithms can't use special characters in the password.
+     * @param selectedMethods the selected methods
+     * @return the reordered methods
+     */
+    private static List<String> reorderSelectedMethods(List<String> selectedMethods){
+        List<String> reorderedMethods = new ArrayList<>(selectedMethods);
+        boolean polybius = reorderedMethods.remove("POLYBIUS");
+        boolean rc4 = reorderedMethods.remove("RC4");
+        boolean aes = reorderedMethods.remove("AES");
+        if(polybius){
+            reorderedMethods.add("POLYBIUS");
+        }
+        if(rc4){
+            reorderedMethods.add("RC4");
+        }
+        if(aes){
+            reorderedMethods.add("AES");
+        }
+        return reorderedMethods;
 }
