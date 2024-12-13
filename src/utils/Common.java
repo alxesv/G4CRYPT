@@ -22,14 +22,8 @@ public class Common {
      * Function to get the name of the service from the user
      */
     public static String getServiceName() {
-        Scanner scanner = new Scanner(System.in);
         System.out.print("\u001B[36mEnter the name of the service: \u001B[0m");
-        while (!scanner.hasNext("^[a-zA-Z0-9]+$")) {
-            System.out.println("\u001B[31mPlease enter a valid service name (alphanumeric characters only).\u001B[0m");
-            System.out.print("\u001B[36mEnter the name of the service: \u001B[0m");
-            scanner.next();
-        }
-        return scanner.next();
+        return getAlphabetCharactersOnly();
     }
 
     /**
