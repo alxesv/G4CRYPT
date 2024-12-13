@@ -37,11 +37,19 @@ public class HelpMenu {
                     hold();
                     break;
                 case 3:
-                    displayGeneratePasswordHelp();
+                    displayHashMenuHelp();
                     hold();
                     break;
                 case 4:
+                    displayGeneratePasswordHelp();
+                    hold();
+                    break;
+                case 5:
                     displayGenerateRandomNumbersHelp();
+                    hold();
+                    break;
+                case 6:
+                    displaySteganographyHelp();
                     hold();
                     break;
                 case 0:
@@ -77,8 +85,8 @@ public class HelpMenu {
      */
     private static void displayRetrievePasswordHelp() {
         System.out.println("\n--- Retrieve Password ---");
-        System.out.println("Retrieve passwords that have been securely stored. You will need to:");
-        System.out.println("- Provide the service name for which the password was stored.");
+        System.out.println("Retrieve passwords that have been securely stored.");
+        System.out.println("You will have to select the password you want to retrieve from the list.");
         System.out.println();
     }
 
@@ -110,9 +118,35 @@ public class HelpMenu {
         System.out.println("\n--- Help Menu ---");
         System.out.println("1. Store Password");
         System.out.println("2. Retrieve Password");
-        System.out.println("3. Generate Secure Password");
-        System.out.println("4. Generate Random Numbers");
+        System.out.println("3. Hash menu");
+        System.out.println("4. Generate Secure Password");
+        System.out.println("5. Generate Random Numbers");
+        System.out.println("6. Steganography");
         System.out.println("0. Return to Main Menu");
+    }
+
+    /**
+     * Display help information for the hash menu
+     */
+    private static void displayHashMenuHelp() {
+        System.out.println("\n--- Hash Menu ---");
+        System.out.println("This option allows you to hash a password using different algorithms.");
+        System.out.println("You will need to provide the password to hash and select the algorithm to use.");
+        System.out.println("The available algorithms are MD5, SHA-256, and HMAC.");
+        System.out.println("You will then be able to compare the stored hash with your password.");
+        System.out.println();
+    }
+
+    /**
+     * Display help information for steganography
+     */
+    private static void displaySteganographyHelp() {
+        System.out.println("\n--- Steganography ---");
+        System.out.println("This option allows you to hide a message within an image.");
+        System.out.println("You will need to provide the path to the image and the message to hide and the path to the output image.");
+        System.out.println("The message will be hidden in the least significant bits of the image pixels.");
+        System.out.println("You will then be able to extract the message from the image.");
+        System.out.println();
     }
 
     /**
