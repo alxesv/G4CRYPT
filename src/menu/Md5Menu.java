@@ -23,11 +23,11 @@ public class Md5Menu {
         String password = getPassword();
 
         // Display the service
-        System.out.println("Hashing password for service: " + service);
+        System.out.println("\u001B[36mHashing password for service: \u001B[0m" + service);
 
         // Hash the password
         String hashedPassword = Md5.hashString(password);
-        System.out.println("Hashed password: " + hashedPassword);
+        System.out.println("\u001B[36mHashed password: \u001B[0m" + hashedPassword);
 
         //Retrieve AES Key
         SecretKey aesKey = AesKeyManager.loadOrGenerateKey();
@@ -46,13 +46,13 @@ public class Md5Menu {
         Scanner scanner = new Scanner(System.in);
         // Ask the user for the password
         while (true) {
-            System.out.print("Enter the password: ");
+            System.out.print("\u001B[36mEnter the password: \u001B[0m");
             String password = scanner.nextLine();
             // Validate the password
             if (!password.isEmpty()) {
                 return password;
             } else {
-                System.out.println("Please enter a valid password.");
+                System.out.println("\u001B[31mPlease enter a valid password.\u001B[0m");
             }
         }
     }

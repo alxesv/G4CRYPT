@@ -24,12 +24,12 @@ public class HmacMenu {
         String seed = getSeed();
 
         // Display the service
-        System.out.println("Encrypting password for service: " + service);
+        System.out.println("\u001B[36mEncrypting password for service: \u001B[0m" + service);
 
         // Encrypt the password
         String hashedPassword = Hmac.hashString(password, seed);
-        System.out.println("Encrypted password: " + hashedPassword);
-        System.out.println("Seed used to encrypt password: " + seed);
+        System.out.println("\u001B[36mEncrypted password: \u001B[0m" + hashedPassword);
+        System.out.println("\u001B[36mSeed used to encrypt password: \u001B[0m" + seed);
 
         //Retrieve AES Key
         SecretKey aesKey = AesKeyManager.loadOrGenerateKey();
@@ -46,13 +46,13 @@ public class HmacMenu {
         Scanner scanner = new Scanner(System.in);
         // Ask the user for the password
         while (true) {
-            System.out.print("Enter the password: ");
+            System.out.print("\u001B[36mEnter the password: \u001B[0m");
             String password = scanner.nextLine();
             // Validate the password
             if (!password.isEmpty()) {
                 return password;
             } else {
-                System.out.println("Please enter a valid password.");
+                System.out.println("\u001B[31mPlease enter a valid password.\u001B[0m");
             }
         }
     }
@@ -66,13 +66,13 @@ public class HmacMenu {
         Scanner scanner = new Scanner(System.in);
         // Ask the user for the password
         while (true) {
-            System.out.print("Enter a seed (required to retrieve password later): ");
+            System.out.print("\u001B[36mEnter a seed (required to retrieve password later): \u001B[0m");
             String seed = scanner.nextLine();
             // Validate the password
             if (!seed.isEmpty()) {
                 return seed;
             } else {
-                System.out.println("Please enter a valid seed.");
+                System.out.println("\u001B[31mPlease enter a valid seed.\u001B[0m");
             }
         }
     }

@@ -29,13 +29,15 @@ public class RetrieveMenu {
      * @throws Exception If any error occurs during the decryption process.
      */
     public static void retrieve() throws Exception {
+        Common.clearScreen();
+
         Common.printTitle("RETRIEVE MENU", "Welcome to the RETRIEVE Menu!");
 
         // Retrieve the list of passwords from the CSV file
         List<String> list = RetrieveCSV.getListCSV();
 
         if (list.isEmpty()) {
-            System.out.println("No data found in the CSV file.");
+            System.out.println("\u001B[37mNo data found in the CSV file.\u001B[0m");
             return;
         }
 
@@ -44,16 +46,16 @@ public class RetrieveMenu {
 
         while (running) {
             // Display the list of passwords
-            System.out.println("Available passwords:");
+            System.out.println("\u001B[36mAvailable passwords:\u001B[0m");
             for (int i = 0; i < list.size(); i++) {
                 String[] parts = list.get(i).split(":");
                 String name = parts[0];
                 String password = parts[1];
-                System.out.println((i + 1) + " - Name: " + name + ", Password: " + password);
+                System.out.println("\u001B[1;36m" + (i + 1) + "\u001B[0m - \u001B[36mName: \u001B[0m" + name + ", \u001B[36mPassword: \u001B[0m" + password);
             }
 
             // Prompt the user for input
-            System.out.print("\nEnter the corresponding number to retrieve the password, or '0' to quit: ");
+            System.out.print("\u001B[36mEnter the corresponding number to retrieve the password, or '0' to quit: \u001B[0m");
             String input = scanner.nextLine();
 
             if (input.equals("0")) {
@@ -73,7 +75,7 @@ public class RetrieveMenu {
                         String decryptedPassword = "";
 
                         if (method.equals("MD5") || method.equals("SHA256") || method.equals("HMAC")) {
-                            System.out.print("Enter password to compare with stored hash: ");
+                            System.out.print("\u001B[36mEnter password to compare with stored hash: \u001B[0m");
                             decryptedPassword = decryptPassword(encryptedPassword, method, args, Optional.of(scanner.nextLine()));
                         } else {
                             // Decrypt the password
@@ -81,17 +83,19 @@ public class RetrieveMenu {
                         }
 
                         // Display the result
-                        System.out.println("\nName: " + name);
-                        System.out.println("Decrypted Password: " + decryptedPassword + "\n");
+                        System.out.println("\n\u001B[1;37mName: \u001B[0m" + name);
+                        System.out.println("\u001B[1;37mDecrypted Password: \u001B[0m" + decryptedPassword + "\n");
+
+                        Common.promptToContinue(scanner);
                     } else {
-                        System.out.println("Invalid number. Please choose a valid index.");
+                        System.out.println("\u001B[31mInvalid number. Please choose a valid index.\u001B[0m");
                     }
                 } catch (NumberFormatException e) {
-                    System.out.println("Invalid input. Please enter a number or 'exit'.");
+                    System.out.println("\n\u001B[31mInvalid input. Please enter a number or '0' to quit.\u001B[0m");
                 }
             }
         }
-        System.out.println("Exiting...");
+        System.out.println("\u001B[33mExiting...\u001B[0m");
     }
 
     /**
@@ -115,7 +119,7 @@ public class RetrieveMenu {
                     return password;
                 }
 
-                return "Error: No rotation index provided.";
+                return "\u001B[31mError: No rotation index provided.\u001B[0m";
 
             case "ENIGMA":
                 // Decrypt using Enigma machine simulation
@@ -132,10 +136,10 @@ public class RetrieveMenu {
 
                         return password;
                     } else {
-                        return "Error: Incorrect number of rotors. Expected 3.";
+                        return "\u001B[31mError: Incorrect number of rotors. Expected 3.\u001B[0m";
                     }
                 }
-                return "Error: No arguments provided for ENIGMA.";
+                return "\u001B[31mError: No arguments provided for ENIGMA.\u001B[0m";
 
             case "AES":
                 // Decrypt using AES encryption
@@ -149,12 +153,12 @@ public class RetrieveMenu {
 
                         return password;
                     } catch (IllegalArgumentException e) {
-                        return "Error: Invalid key format.";
+                        return "\u001B[31mError: Invalid key format.\u001B[0m";
                     } catch (Exception e) {
-                        return "Error: Decryption failed - " + e.getMessage();
+                        return "\u001B[31mError: Decryption failed - " + e.getMessage() + "\u001B[0m";
                     }
                 }
-                return "Error: No key provided for AES.";
+                return "\u001B[31mError: No key provided for AES.\u001B[0m";
 
             case "VIGENERE":
                 // Decrypt using Vigenere cipher
@@ -162,7 +166,7 @@ public class RetrieveMenu {
                     password = Vigenere.decrypt(encryptedPassword, args);
                     return password;
                 }
-                return "We encountered a problem decrypting your password, please wait.";
+                return "\u001B[31mWe encountered a problem decrypting your password, please wait.\u001B[0m";
 
             case "POLYBIUS":
                 // Decrypt using Polybius square cipher
@@ -171,7 +175,7 @@ public class RetrieveMenu {
                     password = Polybius.decrypt(encryptedPassword, grid);
                     return password;
                 }
-                return "Error: No grid provided for Polybius.";
+                return "\u001B[31mError: No grid provided for Polybius.\u001B[0m";
 
             case "RC4":
                 // Decrypt using RC4 cipher
@@ -179,13 +183,13 @@ public class RetrieveMenu {
                     password = Rc4.decrypt(encryptedPassword, args);
                     return password;
                 }
-                return "Error: No seed provided.";
+                return "\u001B[31mError: No seed provided.\u001B[0m";
 
             case "CHAIN":
                 // Decrypt using a chain of encryption methods
                 password = Chain.handleChainDecryption(encryptedPassword, args);
                 return password;
-            
+
             case "MD5":
                 // transforms Optional<String> passwordToCompare to String type
                 String passwordToCompareMd5 = passwordToCompare.get();
@@ -194,7 +198,7 @@ public class RetrieveMenu {
                 if (HashIntegrityChecker.Checker(method, passwordToCompareMd5, encryptedPassword, Optional.empty())) {
                     return passwordToCompareMd5;
                 } else {
-                    return "Passwords not matching";
+                    return "\u001B[31mPasswords not matching\u001B[0m";
                 }
 
             case "SHA256":
@@ -205,7 +209,7 @@ public class RetrieveMenu {
                 if (HashIntegrityChecker.Checker(method, passwordToCompareSha256, encryptedPassword, Optional.empty())) {
                     return passwordToCompareSha256;
                 } else {
-                    return "Passwords not matching";
+                    return "\u001B[31mPasswords not matching\u001B[0m";
                 }
 
             case "HMAC":
@@ -216,11 +220,11 @@ public class RetrieveMenu {
                 if(HashIntegrityChecker.Checker(method, passwordToCompareHmac, encryptedPassword, Optional.of(args))) {
                     return passwordToCompareHmac;
                 } else {
-                    return "Passwords not matching";
+                    return "\u001B[31mPasswords not matching\u001B[0m";
                 }
 
             default:
-                return "Unsupported decryption method: " + method;
+                return "\u001B[31mUnsupported decryption method: " + method + "\u001B[0m";
         }
     }
 }
