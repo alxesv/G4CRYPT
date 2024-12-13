@@ -119,13 +119,13 @@ public class HelpMenu {
     private static void printHelpOptions() {
         Common.printTitle("HELP MENU", "Welcome to the HELP Menu!");
 
-        System.out.println("1. Store Password");
-        System.out.println("2. Retrieve Password");
-        System.out.println("3. Hash menu");
-        System.out.println("4. Generate Secure Password");
-        System.out.println("5. Generate Random Numbers");
-        System.out.println("6. Steganography");
-        System.out.println("0. Return to Main Menu");
+        System.out.println("\u001B[1;36m1.\u001B[0m Store Password");
+        System.out.println("\u001B[1;36m2.\u001B[0m Retrieve Password");
+        System.out.println("\u001B[1;36m3.\u001B[0m Hash menu");
+        System.out.println("\u001B[1;36m4.\u001B[0m Generate Secure Password");
+        System.out.println("\u001B[1;36m5.\u001B[0m Generate Random Numbers");
+        System.out.println("\u001B[1;36m6.\u001B[0m Steganography");
+        System.out.println("\u001B[1;36m0.\u001B[0m Return to Main Menu");
     }
 
     /**
