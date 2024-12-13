@@ -8,7 +8,7 @@ import java.security.NoSuchAlgorithmException;
 import utils.Common;
 
 public class Md5 {
-
+    
     private static final Charset UTF_8 = StandardCharsets.UTF_8;
 
     /**
