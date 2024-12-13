@@ -21,7 +21,7 @@ public class RotationMenu {
      * Display the Rotation menu
      */
     public static void rotation() throws Exception {
-        System.out.println("--- Rotation Menu --- \n");
+        Common.printTitle("ROTATION MENU", "Welcome to the ROTATION encryption Menu!");
         // Ask the name of the service
         String service = Common.getServiceName();
         // Ask the password to encrypt

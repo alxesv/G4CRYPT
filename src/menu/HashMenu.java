@@ -1,5 +1,7 @@
 package menu;
 
+import utils.Common;
+
 import java.util.Scanner;
 
 public class HashMenu {
@@ -52,7 +54,7 @@ public class HashMenu {
      * Display single encryption methods options
      */
     private static void displayHashOptions() {
-        System.out.println("\n--- Hash Password ---");
+        Common.printTitle("HASH MENU", "Welcome to the HASH Menu!");
         System.out.println("1. Hash with MD5");
         System.out.println("2. Hash with SHA256");
         System.out.println("3. Hash with HMAC");

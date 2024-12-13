@@ -1,5 +1,7 @@
 package menu;
 
+import utils.Common;
+
 import java.util.Scanner;
 
 public class HelpMenu {
@@ -115,7 +117,8 @@ public class HelpMenu {
      * Print the help menu options
      */
     private static void printHelpOptions() {
-        System.out.println("\n--- Help Menu ---");
+        Common.printTitle("HELP MENU", "Welcome to the HELP Menu!");
+
         System.out.println("1. Store Password");
         System.out.println("2. Retrieve Password");
         System.out.println("3. Hash menu");

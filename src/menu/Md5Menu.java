@@ -14,7 +14,8 @@ public class Md5Menu {
      * Display Md5 menu
      */
     public static void MD5() throws Exception {
-        System.out.println("--- MD5 Hashing ---\n");
+        Common.printTitle("MD5 HASH MENU", "Welcome to the MD5 hash method Menu!");
+
 
         // Ask the name of the service
         String service = Common.getServiceName();

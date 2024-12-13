@@ -13,7 +13,8 @@ public class VigenereMenu {
      * Display the Vigenere menu
      */
     public static void vigenere() throws Exception {
-        System.out.println("--- Vigenere Menu --- \n");
+        Common.printTitle("VIGENERE MENU", "Welcome to the VIGENERE encryption Menu!");
+
         // Ask the name of the service
         String service = Common.getServiceName();
         // Ask the password to encrypt

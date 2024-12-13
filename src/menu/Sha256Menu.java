@@ -14,7 +14,7 @@ public class Sha256Menu {
      * Display Sha256 menu
      */
     public static void Sha256() throws Exception {
-        System.out.println("--- Sha256 Hashing ---\n");
+        Common.printTitle("SHA256 HASH MENU", "Welcome to the SHA256 hash method Menu!");
 
         // Ask the name of the service
         String service = Common.getServiceName();

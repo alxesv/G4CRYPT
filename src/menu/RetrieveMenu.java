@@ -29,7 +29,7 @@ public class RetrieveMenu {
      * @throws Exception If any error occurs during the decryption process.
      */
     public static void retrieve() throws Exception {
-        System.out.println("--- Retrieve Password Menu ---\n");
+        Common.printTitle("RETRIEVE MENU", "Welcome to the RETRIEVE Menu!");
 
         // Retrieve the list of passwords from the CSV file
         List<String> list = RetrieveCSV.getListCSV();

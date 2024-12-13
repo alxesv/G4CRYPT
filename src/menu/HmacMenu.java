@@ -13,7 +13,8 @@ public class HmacMenu {
      * Display HMAC menu
      */
     public static void HMAC() throws Exception {
-        System.out.println("--- HMAC Hashing ---\n");
+        Common.printTitle("HMAC HASH MENU", "Welcome to the HMAC hash method Menu!");
+
 
         // Ask the name of the service
         String service = Common.getServiceName();

@@ -2,6 +2,7 @@ package menu;
 
 import encryption.Vigenere;
 import menu.HashMenu;
+import utils.Common;
 
 import java.util.Scanner;
 
@@ -10,21 +11,22 @@ public class StoreMenu {
      * Store password menu
      */
     public static void store() throws Exception {
+        Common.clearScreen();
 
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
 
         while (running) {
-            // Display store menu options
-            printStoreOptions();
+            // Display store menu options with title and decorations
+            printTitleAndStoreOptions();
 
-            System.out.print("Enter your choice: ");
+            System.out.print("\u001B[36mEnter your choice: \u001B[0m");
 
             // Validate user input
             while (!scanner.hasNextInt()) {
-                System.out.println("Please enter a valid choice.");
+                System.out.println("\u001B[31mPlease enter a valid choice.\u001B[0m");
                 printStoreOptions();
-                System.out.print("Enter your choice: ");
+                System.out.print("\u001B[36mEnter your choice: \u001B[0m");
                 scanner.next();
             }
 
@@ -33,12 +35,15 @@ public class StoreMenu {
             // Process user input
             switch (choice) {
                 case 1:
+                    Common.clearScreen();
+
                     displaySingleEncryptionsOptions();
+                    System.out.print("\u001B[36mEnter your choice: \u001B[0m");
 
                     while(!scanner.hasNextInt()){
-                        System.out.println("Please enter a valid choice.");
+                        System.out.println("\u001B[31mPlease enter a valid choice.\u001B[0m");
                         displaySingleEncryptionsOptions();
-                        System.out.print("Enter your choice: ");
+                        System.out.print("\u001B[36mEnter your choice: \u001B[0m");
                         scanner.next();
                     }
                     int encryptionChoice = scanner.nextInt();
@@ -46,7 +51,6 @@ public class StoreMenu {
                     switch(encryptionChoice){
                         case 1:
                             RotationMenu.rotation();
-                            // Remove break and add the rotation encryption menu
                             break;
                         case 2:
                             VigenereMenu.vigenere();
@@ -64,10 +68,10 @@ public class StoreMenu {
                             AesMenu.aes();
                             break;
                         case 0:
-                            System.out.println("Back...");
+                            System.out.println("\u001B[33mBack...\u001B[0m");
                             break;
                         default:
-                            System.out.println("Invalid choice. Please try again.");
+                            System.out.println("\u001B[31mInvalid choice. Please try again.\u001B[0m");
                     }
                     break;
 
@@ -75,12 +79,12 @@ public class StoreMenu {
                     ChainMenu.chain();
                     break;
                 case 0:
-                    System.out.println("Returning to main menu...");
+                    System.out.println("\u001B[33mReturning to main menu...\u001B[0m");
                     // Exit the help menu
                     running = false;
                     break;
                 default:
-                    System.out.println("Invalid choice. Please try again.");
+                    System.out.println("\u001B[31mInvalid choice. Please try again.\u001B[0m");
             }
         }
     }
@@ -89,25 +93,32 @@ public class StoreMenu {
      * Display single encryption methods options
      */
     private static void displaySingleEncryptionsOptions() {
-        System.out.println("\n--- Store Password ---");
-        System.out.println("Please select one of the following encryption methods:");
-        System.out.println("1. Rotation (Ceasar)");
-        System.out.println("2. Vigenère");
-        System.out.println("3. Polybius");
-        System.out.println("4. RC4");
-        System.out.println("5. Enigma");
-        System.out.println("6. AES");
-        System.out.println("0. Return to main menu");
+        // Add a title for this menu
+        Common.printTitle("ENCRYPTION METHODS", "Welcome to the Encryption Methods Menu!");
+
+        System.out.println("\u001B[1;36mPlease select one of the following encryption methods:\u001B[0m");
+        System.out.println("\u001B[1;36m1.\u001B[0m Rotation (Ceasar)");
+        System.out.println("\u001B[1;36m2.\u001B[0m Vigenère");
+        System.out.println("\u001B[1;36m3.\u001B[0m Polybius");
+        System.out.println("\u001B[1;36m4.\u001B[0m RC4");
+        System.out.println("\u001B[1;36m5.\u001B[0m Enigma");
+        System.out.println("\u001B[1;36m6.\u001B[0m AES");
+        System.out.println("\u001B[1;31m0.\u001B[0m Return to main menu");
     }
 
     /**
      * Print the store options available to the user
      */
     private static void printStoreOptions(){
-        System.out.println("\n--- Store Password ---");
-        System.out.println("Please select one of the following options:");
-        System.out.println("1. Use a single encryption method");
-        System.out.println("2. Use a chain of encryption methods");
-        System.out.println("0. Return to main menu");
+        System.out.println("\n\u001B[1;34m--- Store Password ---\u001B[0m");
+        System.out.println("\u001B[1;36mPlease select one of the following options:\u001B[0m");
+        System.out.println("\u001B[1;36m1.\u001B[0m Use a single encryption method");
+        System.out.println("\u001B[1;36m2.\u001B[0m Use a chain of encryption methods");
+        System.out.println("\u001B[1;31m0.\u001B[0m Return to main menu");
+    }
+
+    private static void printTitleAndStoreOptions() {
+        Common.printTitle("STORE MENU", "Welcome to the Password Store Menu!");
+        printStoreOptions();
     }
 }
