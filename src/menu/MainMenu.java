@@ -15,7 +15,7 @@ public class MainMenu {
      */
     public static void mainMenu() throws Exception {
         Scanner scanner = new Scanner(System.in);
-        int[] validChoices = {1, 2, 3, 4, 5, 0};
+        int[] validChoices = {1, 2, 3, 4, 5, 6, 0};
         boolean running = true;
 
         while (running) {
@@ -44,7 +44,7 @@ public class MainMenu {
           
             // Check if the choice is valid
             if (isChoiceValid(choice, validChoices)) {
-                // Navigate to the selected option
+              // Navigate to the selected option
               switch (choice) {
                   case 1:
                       StoreMenu.store();
@@ -62,6 +62,9 @@ public class MainMenu {
                       RandomNumberMenu.randomNumber();
                       break;
                   case 6:
+                        SteganographyMenu.steganography();
+                        break;
+                  case 7:
                       // Display help menu
                       HelpMenu.help();
                       break;
@@ -101,7 +104,8 @@ public class MainMenu {
         System.out.println("3. Hash password");
         System.out.println("4. Generate secure password");
         System.out.println("5. Generate random numbers");
-        System.out.println("6. Help - How to use the application");
+        System.out.println("6. Steganography");
+        System.out.println("7. Help - How to use the application");
         System.out.println("0. Exit");
     }
 
