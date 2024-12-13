@@ -70,8 +70,15 @@ public class RetrieveMenu {
                         String method = parts[2];
                         String args = parts.length > 3 ? parts[3] : null;
 
-                        // Decrypt the password
-                        String decryptedPassword = decryptPassword(encryptedPassword, method, args);
+                        String decryptedPassword = "";
+
+                        if (method.equals("MD5") || method.equals("SHA256") || method.equals("HMAC")) {
+                            System.out.print("Enter password to compare with database: ");
+                            decryptedPassword = decryptPassword(encryptedPassword, method, args, Optional.of(scanner.nextLine()));
+                        } else {
+                            // Decrypt the password
+                            decryptedPassword = decryptPassword(encryptedPassword, method, args, Optional.empty());
+                        }
 
                         // Display the result
                         System.out.println("\nName: " + name);
@@ -84,7 +91,6 @@ public class RetrieveMenu {
                 }
             }
         }
-
         System.out.println("Exiting...");
     }
 
@@ -98,9 +104,8 @@ public class RetrieveMenu {
      * @param args The arguments required for the decryption method (e.g., key, rotors, etc.).
      * @return The decrypted password, or an error message if decryption fails.
      */
-    public static String decryptPassword(String encryptedPassword, String method, String args) {
+    public static String decryptPassword(String encryptedPassword, String method, String args, Optional<String> passwordToCompare) {
         String password = "";
-        Scanner scanner = new Scanner(System.in);
 
         switch (method.toUpperCase()) {
             case "ROT":
@@ -182,36 +187,41 @@ public class RetrieveMenu {
                 return password;
             
             case "MD5":
-                // Get the password the user wants to compare
-                String passwordToCompareMd5 = scanner.nextLine();
-
-                // Hash password in the correct method
-                Md5.hashString(passwordToCompareMd5);
+                // transforms Optional<String> passwordToCompare to String type
+                String passwordToCompareMd5 = passwordToCompare.get();
 
                 // Compares both passwords using MD5
-                HashIntegrityChecker.Checker(method, passwordToCompareMd5, encryptedPassword, Optional.empty());
+                if (HashIntegrityChecker.Checker(method, passwordToCompareMd5, encryptedPassword, Optional.empty())) {
+                    System.out.println("breakpoint");
+                    return passwordToCompareMd5;
+                } else {
+                    return "Passwords not matching";
+                }
 
             case "SHA256":
-                // Get the password the user wants to compare
-                String passwordToCompareSha256 = scanner.nextLine();
+                // transforms Optional<String> passwordToCompare to String type
+                String passwordToCompareSha256 = passwordToCompare.get();
 
-                // Hash password in the correct method
-                Sha256.hashString(passwordToCompareSha256);
-
-                // Compares both passwords using MD5
-                HashIntegrityChecker.Checker(method, passwordToCompareSha256, encryptedPassword, Optional.empty());
+                // Compares both passwords using SHA256
+                if (HashIntegrityChecker.Checker(method, passwordToCompareSha256, encryptedPassword, Optional.empty())) {
+                    return passwordToCompareSha256;
+                } else {
+                    return "Passwords not matching";
+                }
 
             case "HMAC":
-                // Get the password the user wants to compare
-                String passwordToCompareHMAC = scanner.nextLine();
+                // transforms Optional<String> passwordToCompare to String type
+                String passwordToCompareHmac = passwordToCompare.get();
 
-                // Hash password in the correct method
-                Hmac.hashString(password, args);
-
-                // Compares both passwords using MD5
-                HashIntegrityChecker.Checker(method, passwordToCompareHMAC, encryptedPassword, Optional.of(args));
+                // Compares both passwords using HMAC
+                if(HashIntegrityChecker.Checker(method, passwordToCompareHmac, encryptedPassword, Optional.of(args))) {
+                    return passwordToCompareHmac;
+                } else {
+                    return "Passwords not matching";
+                }
 
             default:
+                System.out.println("breakpoint2");
                 return "Unsupported decryption method: " + method;
         }
     }
