@@ -73,7 +73,7 @@ public class RetrieveMenu {
                         String decryptedPassword = "";
 
                         if (method.equals("MD5") || method.equals("SHA256") || method.equals("HMAC")) {
-                            System.out.print("Enter password to compare with database: ");
+                            System.out.print("Enter password to compare with stored hash: ");
                             decryptedPassword = decryptPassword(encryptedPassword, method, args, Optional.of(scanner.nextLine()));
                         } else {
                             // Decrypt the password
@@ -192,7 +192,6 @@ public class RetrieveMenu {
 
                 // Compares both passwords using MD5
                 if (HashIntegrityChecker.Checker(method, passwordToCompareMd5, encryptedPassword, Optional.empty())) {
-                    System.out.println("breakpoint");
                     return passwordToCompareMd5;
                 } else {
                     return "Passwords not matching";
@@ -221,7 +220,6 @@ public class RetrieveMenu {
                 }
 
             default:
-                System.out.println("breakpoint2");
                 return "Unsupported decryption method: " + method;
         }
     }
