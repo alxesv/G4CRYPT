@@ -106,7 +106,7 @@ public class ChainMenu {
                 case "VIGENERE":
                     // Ask for the Vigenere key
                     System.out.println("Select a key for the Vigenere method:");
-                    String vigenereKey = VigenereMenu.getVigenereKey();
+                    String vigenereKey = Common.getAlphabetCharactersOnly();
                     methodVariables.append("VIGENERE").append(">").append(vigenereKey).append(";");
                     break;
                 case "ENIGMA":

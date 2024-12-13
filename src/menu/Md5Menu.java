@@ -33,7 +33,7 @@ public class Md5Menu {
         SecretKey aesKey = AesKeyManager.loadOrGenerateKey();
 
         // Save the encrypted password and the seed
-        SaveData.saveData(service, hashedPassword, "SHA256", null, aesKey);
+        SaveData.saveData(service, hashedPassword, "MD5", null, aesKey);
         
     }
 

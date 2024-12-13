@@ -14,7 +14,7 @@ public class MainMenu {
         Common.clearScreen();
 
         Scanner scanner = new Scanner(System.in);
-        int[] validChoices = {1, 2, 3, 4, 5, 0};
+        int[] validChoices = {1, 2, 3, 4, 5, 6, 7, 0};
         boolean running = true;
 
         while (running) {
@@ -45,8 +45,8 @@ public class MainMenu {
                 // Navigate to the selected option
                 switch (choice) {
                     case 1:
-                        StoreMenu.store();
-                        break;
+                      StoreMenu.store();
+                      break;
                     case 2:
                         RetrieveMenu.retrieve();
                         break;
@@ -60,6 +60,9 @@ public class MainMenu {
                         RandomNumberMenu.randomNumber();
                         break;
                     case 6:
+                          SteganographyMenu.steganography();
+                          break;
+                    case 7:
                         // Display help menu
                         HelpMenu.help();
                         break;
@@ -104,6 +107,7 @@ public class MainMenu {
         System.out.println("\u001B[1;36m3.\u001B[0m Hash password");
         System.out.println("\u001B[1;36m4.\u001B[0m Generate secure password");
         System.out.println("\u001B[1;36m5.\u001B[0m Generate random numbers");
+        System.out.println("\u001B[1;36m6.\u001B[0m Steganography");
         System.out.println("\u001B[1;36m6.\u001B[0m Help - How to use the application");
         System.out.println("\u001B[1;31m0.\u001B[0m Exit");
     }
