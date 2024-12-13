@@ -32,3 +32,6 @@ bin/
 
 data.csv
 .env
+
+# Compiled class file
+META-INF/
